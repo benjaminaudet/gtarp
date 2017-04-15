@@ -53,7 +53,7 @@ end)
 local justJoined = {}
 
 RegisterServerEvent('es:firstJoinProper')
-AddEventHandler('es:firstJoinProper', function(=)
+AddEventHandler('es:firstJoinProper', function()
 	local identifiers = GetPlayerIdentifiers(source)
 	for i = 1, #identifiers do
 		if(Users[source] == nil)then
