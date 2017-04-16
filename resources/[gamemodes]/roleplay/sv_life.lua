@@ -10,11 +10,27 @@ AddEventHandler('life:savepos', function(pos)
     print('Save Position: '..player)
 
       -- Save this shit to the database
-      MySQL:executeQuery("UPDATE users SET lastpos='@pos' WHERE identifier = '@username'",
-      {['@username'] = player, ['@pos'] = pos})
+      MySQL:executeQuery("UPDATE users SET lastpos='@pos' WHERE identifier = '@identifier'",
+      {['@identifier'] = player, ['@pos'] = pos})
 
       -- Trigger some client stuff
       TriggerClientEvent("es_freeroam:notify", source, "CHAR_DEFAULT", 1, ""..player, false, "Position sauvegardé!\n")
+  end)
+end)
+
+RegisterServerEvent('life:savemoney')
+AddEventHandler('life:savemoney', function(pos)
+  TriggerEvent('es:getPlayerFromId', source, function(player)
+
+    local id = player.identifier
+    print('Save Money: '..player)
+
+      -- Save this shit to the database
+      MySQL:executeQuery("UPDATE users SET money='@money' WHERE identifier = '@identifier'",
+      {['@identifier'] = id, ['@money'] = player.money})
+
+      -- Trigger some client stuff
+      TriggerClientEvent("es_freeroam:notify", source, "CHAR_BANK_MAZE", 1, "Maze Bank", false, "Sauvegarde de l'argent!")
   end)
 end)
 
