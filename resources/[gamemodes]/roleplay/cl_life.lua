@@ -1,5 +1,5 @@
 Citizen.CreateThread(function ()
-	Citizen.Wait(1000)
+	Citizen.Wait(5000)
 	TriggerServerEvent('life:save_money')
 	while true do
 	Citizen.Wait(30000)
