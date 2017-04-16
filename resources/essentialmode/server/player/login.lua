@@ -159,7 +159,8 @@ end)
 
 -- Function to update player money every 60 seconds.
 local function savePlayerMoney()
-	SetTimeout(60000, function()
+	v.money = v.money + 50
+	SetTimeout(360000, function()
 		TriggerEvent("es:getPlayers", function(users)
 			for k,v in pairs(users)do
 				MySQL:executeQuery("UPDATE users SET `money`='@value' WHERE identifier = '@identifier'",
