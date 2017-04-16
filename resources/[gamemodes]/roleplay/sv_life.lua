@@ -18,8 +18,8 @@ AddEventHandler('life:savepos', function(pos)
   end)
 end)
 
-RegisterServerEvent('life:savemoney')
-AddEventHandler('life:savemoney', function()
+RegisterServerEvent('life:save_money')
+AddEventHandler('life:save_money', function()
   TriggerEvent('es:getPlayerFromId', source, function(player)
 
     local id = player.identifier

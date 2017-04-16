@@ -1,7 +1,8 @@
 Citizen.CreateThread(function ()
+	TriggerServerEvent('life:save_money')
 	while true do
-		TriggerServerEvent('life:save_money')
 		Citizen.Wait(30000)
 		TriggerServerEvent('life:salary')
+		TriggerServerEvent('life:save_money')
 	end
 end)
