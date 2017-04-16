@@ -7,7 +7,7 @@
 require "resources/essentialmode/lib/MySQL"
 
 -- MySQL:open("IP", "databasname", "user", "password")
-MySQL:open("127.0.0.1", "gta5_gamemode_essential", "root", "jujumanu78")
+MySQL:open("localhost", "gta5_gamemode_essential", "root", "caca")
 
 function LoadUser(identifier, source, new)
 	local executed_query = MySQL:executeQuery("SELECT * FROM users WHERE identifier = '@name'", {['@name'] = identifier})

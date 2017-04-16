@@ -1,9 +1,8 @@
 Citizen.CreateThread(function ()
+	TriggerServerEvent('life:save_money')
 	while true do
-	Citizen.Wait(60000)
+	Citizen.Wait(30000)
 		TriggerServerEvent('life:salary')
-		local pos = GetEntityCoords(GetPlayerPed(-1))
-		TriggerServerEvent('life:savepos', pos)
-		TriggerServerEvent('life:savemoney')
+		TriggerServerEvent('life:save_money')
 	end
 end)

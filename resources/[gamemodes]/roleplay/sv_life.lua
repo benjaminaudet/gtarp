@@ -1,6 +1,6 @@
 -- Loading MySQL Class
 require "resources/essentialmode/lib/MySQL"
-MySQL:open("localhost", "gta5_gamemode_essential", "root", "jujumanu78")
+MySQL:open("localhost", "gta5_gamemode_essential", "root", "caca")
 
 RegisterServerEvent('life:savepos')
 AddEventHandler('life:savepos', function(pos)
@@ -19,7 +19,7 @@ AddEventHandler('life:savepos', function(pos)
 end)
 
 RegisterServerEvent('life:savemoney')
-AddEventHandler('life:savemoney', function(pos)
+AddEventHandler('life:savemoney', function()
   TriggerEvent('es:getPlayerFromId', source, function(player)
 
     local id = player.identifier
