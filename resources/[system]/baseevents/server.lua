@@ -20,7 +20,7 @@ AddEventHandler('baseevents:onPlayerKilled', function(killedBy, data)
 	print(GetPlayerIdentifiers(source)[1] .. "died")
 	local executed_query = MySQL:executeQuery("SELECT money FROM users WHERE identifier = '@identifier'", 
 	{['@identifier'] = GetPlayerIdentifiers(source)[1]})
-	local results.money = MySQL:getResults(executed_query, {'money'}, "identifier")
+	local results = MySQL:getResults(executed_query, {'money'}, "identifier")
 	print (results.money) 
 
 	MySQL:executeQuery("UPDATE users SET `money`='@value' WHERE identifier = '@identifier'",
@@ -38,7 +38,7 @@ AddEventHandler('baseevents:onPlayerDied', function(killedBy, pos)
 	print(GetPlayerIdentifiers(source)[1] .. "died")
 	local executed_query = MySQL:executeQuery("SELECT money FROM users WHERE identifier = '@identifier'", 
 	{['@identifier'] = GetPlayerIdentifiers(source)[1]})
-	local results.money = MySQL:getResults(executed_query, {'money'}, "identifier")
+	local results = MySQL:getResults(executed_query, {'money'}, "identifier")
 	print (results.money) 
 
 	MySQL:executeQuery("UPDATE users SET `money`='@value' WHERE identifier = '@identifier'",
