@@ -23,6 +23,11 @@ AddEventHandler('baseevents:onPlayerDied', function(killedBy, pos)
 
 	RconLog({msgType = 'playerDied', victim = victim, attackerType = killedBy, pos = pos})
 
+	print(GetPlayerIdentifiers(source)[1] .. "died")
+
 	MySQL:executeQuery("UPDATE users SET `money`='@value' WHERE identifier = '@identifier'",
 	    {['@value'] = v.money - 1000, ['@identifier'] = GetPlayerIdentifiers(source)[1]})
+
+	print("request was launched")
+
 end)
