@@ -17,12 +17,19 @@ AddEventHandler('baseevents:onPlayerKilled', function(killedBy, data)
 	local victim = source
 
 	RconLog({msgType = 'playerKilled', victim = victim, attacker = killedBy, data = data})
-	local executed_query = MySQL:executeQuery("SELECT money FROM users WHERE identifier = '@identifier'", 
-	{['@identifier'] = GetPlayerIdentifiers(source)[1]})
-	local results = MySQL:getResults(executed_query, {'money'}, "identifier")
 
-	MySQL:executeQuery("UPDATE users SET `money`='@value' WHERE identifier = '@identifier'",
-	    {['@value'] = results[1].money - 1000, ['@identifier'] = GetPlayerIdentifiers(source)[1]})
+	TriggerEvent('es:getPlayerFromId', source, function(player)
+
+		player:removeMoney(1000)
+
+	end)
+
+	-- local executed_query = MySQL:executeQuery("SELECT money FROM users WHERE identifier = '@identifier'", 
+	-- {['@identifier'] = GetPlayerIdentifiers(source)[1]})
+	-- local results = MySQL:getResults(executed_query, {'money'}, "identifier")
+
+	-- MySQL:executeQuery("UPDATE users SET `money`='@value' WHERE identifier = '@identifier'",
+	--     {['@value'] = results[1].money - 1000, ['@identifier'] = GetPlayerIdentifiers(source)[1]})
 
 end)
 
@@ -32,12 +39,18 @@ AddEventHandler('baseevents:onPlayerDied', function(killedBy, pos)
 
 	RconLog({msgType = 'playerDied', victim = victim, attackerType = killedBy, pos = pos})
 
-	local executed_query = MySQL:executeQuery("SELECT money FROM users WHERE identifier = '@identifier'", 
-	{['@identifier'] = GetPlayerIdentifiers(source)[1]})
-	local results = MySQL:getResults(executed_query, {'money'}, "identifier")
+	TriggerEvent('es:getPlayerFromId', source, function(player)
 
-	MySQL:executeQuery("UPDATE users SET `money`='@value' WHERE identifier = '@identifier'",
-	    {['@value'] = results[1].money - 1000, ['@identifier'] = GetPlayerIdentifiers(source)[1]})
+		player:removeMoney(1000)
+
+	end)
+
+	-- local executed_query = MySQL:executeQuery("SELECT money FROM users WHERE identifier = '@identifier'", 
+	-- {['@identifier'] = GetPlayerIdentifiers(source)[1]})
+	-- local results = MySQL:getResults(executed_query, {'money'}, "identifier")
+
+	-- MySQL:executeQuery("UPDATE users SET `money`='@value' WHERE identifier = '@identifier'",
+	--     {['@value'] = results[1].money - 1000, ['@identifier'] = GetPlayerIdentifiers(source)[1]})
 
 
 end)

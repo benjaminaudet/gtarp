@@ -18,6 +18,30 @@ AddEventHandler('life:savepos', function(pos)
   end)
 end)
 
+RegisterServerEvent('life:resetStarve')
+AddEventHandler('life:resetStarve', function()
+  TriggerEvent('es:getPlayerFromId', source, function(player)
+
+    player:resetStarve()
+
+  end)
+end)
+
+RegisterServerEvent('life:starving')
+AddEventHandler('life:starving', function()
+  TriggerEvent('es:getPlayerFromId', source, function(player)
+
+    player:spendingEnergy()
+    player:starving()
+
+    print("hunger: "..player.hunger)
+    print("thirst: "..player.thirst)
+
+    TriggerClientEvent('isStarve', source, player.hunger, player.thirst)
+
+  end)
+end)
+
 RegisterServerEvent('life:save_money')
 AddEventHandler('life:save_money', function()
   TriggerEvent('es:getPlayerFromId', source, function(player)

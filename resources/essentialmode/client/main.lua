@@ -8,7 +8,7 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
 
 		if NetworkIsSessionStarted() then
-			TriggerServerEvent('es:firstJoinProper')
+			TriggerServerEvent('es:firstJoinProper', GetPlayerPed(-1))
 			return
 		end
 	end
@@ -55,6 +55,18 @@ AddEventHandler("playerSpawned", function()
 	for k,v in pairs(myDecorators)do
 		DecorSetInt(GetPlayerPed(-1), k, v)
 	end
+
+	TriggerServerEvent('life:resetStarve')
+end)
+
+RegisterNetEvent('isStarve')
+AddEventHandler('isStarve', function(hunger, thirst)
+
+	Citizen.Trace("isStarve event")
+
+	SendNUIMessage({
+		starving = {activate = true, hunger = hunger, thirst = thirst}
+	})
 end)
 
 RegisterNetEvent('es:activateMoney')

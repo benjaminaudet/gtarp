@@ -53,14 +53,14 @@ end)
 local justJoined = {}
 
 RegisterServerEvent('es:firstJoinProper')
-AddEventHandler('es:firstJoinProper', function()
+AddEventHandler('es:firstJoinProper', function(ped)
 	local identifiers = GetPlayerIdentifiers(source)
 	for i = 1, #identifiers do
 		if(Users[source] == nil)then
 			debugMsg("Essential | Loading user: " .. GetPlayerName(source))
 
 			local identifier = identifiers[i]
-			registerUser(identifier, source)
+			registerUser(identifier, source, ped)
 
 			TriggerEvent('es:initialized', source)
 			justJoined[source] = true
