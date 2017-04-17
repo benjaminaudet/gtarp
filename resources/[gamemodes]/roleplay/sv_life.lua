@@ -23,11 +23,13 @@ AddEventHandler('life:save_money', function()
   TriggerEvent('es:getPlayerFromId', source, function(player)
 
     local id = player.identifier
-    print('Save Money: '..player)
+    print('Save Money: '..player.money)
 
       -- Save this shit to the database
       MySQL:executeQuery("UPDATE users SET money='@money' WHERE identifier = '@identifier'",
       {['@identifier'] = id, ['@money'] = player.money})
+      
+      TriggerClientEvent('es:activateMoney', source , player.money)
 
       -- Trigger some client stuff
       TriggerClientEvent("es_freeroam:notify", source, "CHAR_BANK_MAZE", 1, "Maze Bank", false, "Sauvegarde de l'argent!")
