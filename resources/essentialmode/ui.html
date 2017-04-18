@@ -2,7 +2,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:light,regular,medium,thin,italic,mediumitalic,bold" title="roboto">
 	<link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
 	<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
-	<script src="progressbar.js" type="text/javascript"></script>
+	<script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/1.0.0/dist/progressbar.js" type="text/javascript"></script>
 	<script>
 		function addCommas(nStr) {
 			nStr += '';
@@ -21,7 +21,7 @@
 
 
 			window.addEventListener('message', function(event){
-				var item = event.detail;
+				var item = event.data;
 
 				if(item.setmoney == true) {
 
@@ -33,6 +33,8 @@
 				if (item.starving.activate) {
 					// progressbar.js@1.0.0 version is used
 					// Docs: http://progressbarjs.readthedocs.org/en/1.0.0/
+
+					$('svg').remove()
 
 					var hunger = new ProgressBar.SemiCircle(container, {
 					  strokeWidth: 6,
@@ -46,8 +48,8 @@
 					    value: '',
 					    alignToBottom: false
 					  },
-					  from: {color: '#222222'},
-					  to: {color: '#00cc00'},
+					  from: {color: '#54DE7C'},
+					  to: {color: '#54DE7C'},
 					  // Set default step function for all animate calls
 					  step: (state, hunger) => {
 					    hunger.path.setAttribute('stroke', state.color);
@@ -73,8 +75,8 @@
 					    value: '',
 					    alignToBottom: false
 					  },
-					  from: {color: '#222222'},
-					  to: {color: '#0000cc'},
+					  from: {color: '#4298FF'},
+					  to: {color: '#4298FF'},
 					  // Set default step function for all animate calls
 					  step: (state, thirst) => {
 					    thirst.path.setAttribute('stroke', state.color);
@@ -89,20 +91,16 @@
 					  }
 					});
 
-					hunger.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
-					hunger.text.style.fontSize = '2rem';
 
-					thirst.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
-					thirst.text.style.fontSize = '2rem';
 
-					hunger.animate(item.starving.hunger / 100);  // Number from 0.0 to 1.0
-					thirst.animate(item.starving.thirst / 100);  // Number from 0.0 to 1.0
+					hunger.set(item.starving.hunger / 100);  // Number from 0.0 to 1.0
+					thirst.set(item.starving.thirst / 100);  // Number from 0.0 to 1.0
 
-					$('.progressbar-text').first().css('top', '0px')
-					$('.progressbar-text').last().css('top', '115px')
 					$('svg').last().css('transform', 'rotate(180deg)')
-					$('container svg').css('width', '200px')
-
+					$('#container svg').css('width', '100px')
+    				$('svg').first().css('position', 'fixed').css('bottom', '75px').css('right', '25px')
+    				$('svg').last().css('position', 'fixed').css('bottom', '25px').css('right', '25px')
+    				$('.progressbar-text').remove()
 				}
 				if(item.addcash == true){
 					$('.tiny').remove();
@@ -153,17 +151,14 @@
 			font-size: 35px;
 			color: white;
 			padding: 4px;
+			position: fixed;
+			right: 0;
 		text-shadow:
 		   -1px -1px 0 #000,
 			1px -1px 0 #000,
 			-1px 1px 0 #000,
 			 1px 1px 0 #000;
 				}
-
-		#starve-div {
-			width: 200px;
-			height: 100px;
-		}
 
 		#container {
 			position: absolute;
