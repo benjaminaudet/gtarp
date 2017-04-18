@@ -1,20 +1,27 @@
 -- Loading MySQL Class
 require "resources/essentialmode/lib/MySQL"
-MySQL:open("localhost", "gta5_gamemode_essential", "root", "caca")
+MySQL:open("localhost", "gta5_gamemode_essential", "root", "jujumanu78")
 
 RegisterServerEvent('life:savepos')
 AddEventHandler('life:savepos', function(pos)
   TriggerEvent('es:getPlayerFromId', source, function(player)
 
-    local player = player.identifier
-    print('Save Position: '..player)
+    local playerIdentifier = player.identifier
+    print('Save Position: '..playerIdentifier)
+    
+      -- Get Id
+      local exeQuery = MySQL:executeQuery("SELECT id FROM users WHERE identifier = '@identifier'", {['@identifier'] = playerIdentifier})
+      local id = MySQL:getResults(exeQuery, {'id'}, "id")
 
-      -- Save this shit to the database
-      MySQL:executeQuery("UPDATE users SET lastpos='@pos' WHERE identifier = '@identifier'",
-      {['@identifier'] = player, ['@pos'] = pos})
+      -- Get player position
+      x, y, z = table.unpack(GetEntityCoords(GetPlayerPed(-1), true))
+
+      -- Save this shit to the databasett
+      MySQL:executeQuery("UPDATE pos SET x ='@x', y = '@y' , z = '@z' WHERE id = '@id'",
+      {['@id'] = id, ['@x'] = x, ['@y'] = y, ['@z'] = z})
 
       -- Trigger some client stuff
-      TriggerClientEvent("es_freeroam:notify", source, "CHAR_DEFAULT", 1, ""..player, false, "Position sauvegardé!\n")
+      TriggerClientEvent("es_freeroam:notify", source, "CHAR_DEFAULT", 1, ""..playerIdentifier, false, "Position sauvegardé!\n")
   end)
 end)
 
@@ -33,9 +40,6 @@ AddEventHandler('life:starving', function()
 
     player:spendingEnergy()
     player:starving()
-
-    print("hunger: "..player.hunger)
-    print("thirst: "..player.thirst)
 
     TriggerClientEvent('isStarve', source, player.hunger, player.thirst)
 
