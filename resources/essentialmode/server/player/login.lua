@@ -7,14 +7,14 @@
 require "resources/essentialmode/lib/MySQL"
 
 -- MySQL:open("IP", "databasname", "user", "password")
-MySQL:open("127.0.0.1", "gta5_gamemode_essential", "root", "jujumanu78")
+MySQL:open("localhost", "gta5_gamemode_essential", "root", "caca")
 
-function LoadUser(identifier, source, new)
+function LoadUser(identifier, source, new, ped)
 	local executed_query = MySQL:executeQuery("SELECT * FROM users WHERE identifier = '@name'", {['@name'] = identifier})
 	local result = MySQL:getResults(executed_query, {'permission_level', 'money', 'identifier', 'group'}, "identifier")
 
 	local group = groups[result[1].group]
-	Users[source] = Player(source, result[1].permission_level, result[1].money, result[1].identifier, group)
+	Users[source] = Player(source, result[1].permission_level, result[1].money, result[1].identifier, group, ped)
 
 	TriggerEvent('es:playerLoaded', source, Users[source])
 
@@ -80,15 +80,15 @@ function isLoggedIn(source)
 	end
 end
 
-function registerUser(identifier, source, playerPed)
+function registerUser(identifier, source, ped)
 	if not hasAccount(identifier) then
 		-- Inserting Default User Account Stats
 		MySQL:executeQuery("INSERT INTO users (`identifier`, `permission_level`, `money`, `group`) VALUES ('@username', '0', '@money', 'user')",
 		{['@username'] = identifier, ['@money'] = settings.defaultSettings.startingCash})
 
-		LoadUser(identifier, source, true)
+		LoadUser(identifier, source, true, ped)
 	else
-		LoadUser(identifier, source)
+		LoadUser(identifier, source, false, ped)
 	end
 end
 

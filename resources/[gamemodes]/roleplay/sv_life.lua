@@ -1,6 +1,6 @@
 -- Loading MySQL Class
 require "resources/essentialmode/lib/MySQL"
-MySQL:open("localhost", "gta5_gamemode_essential", "root", "jujumanu78")
+MySQL:open("localhost", "gta5_gamemode_essential", "root", "caca")
 
 RegisterServerEvent('life:savepos')
 AddEventHandler('life:savepos', function(pos)
@@ -18,16 +18,42 @@ AddEventHandler('life:savepos', function(pos)
   end)
 end)
 
-RegisterServerEvent('life:savemoney')
-AddEventHandler('life:savemoney', function(pos)
+RegisterServerEvent('life:resetStarve')
+AddEventHandler('life:resetStarve', function()
+  TriggerEvent('es:getPlayerFromId', source, function(player)
+
+    player:resetStarve()
+
+  end)
+end)
+
+RegisterServerEvent('life:starving')
+AddEventHandler('life:starving', function()
+  TriggerEvent('es:getPlayerFromId', source, function(player)
+
+    player:spendingEnergy()
+    player:starving()
+
+    print("hunger: "..player.hunger)
+    print("thirst: "..player.thirst)
+
+    TriggerClientEvent('isStarve', source, player.hunger, player.thirst)
+
+  end)
+end)
+
+RegisterServerEvent('life:save_money')
+AddEventHandler('life:save_money', function()
   TriggerEvent('es:getPlayerFromId', source, function(player)
 
     local id = player.identifier
-    print('Save Money: '..player)
+    print('Save Money: '..player.money)
 
       -- Save this shit to the database
       MySQL:executeQuery("UPDATE users SET money='@money' WHERE identifier = '@identifier'",
       {['@identifier'] = id, ['@money'] = player.money})
+      
+      TriggerClientEvent('es:activateMoney', source , player.money)
 
       -- Trigger some client stuff
       TriggerClientEvent("es_freeroam:notify", source, "CHAR_BANK_MAZE", 1, "Maze Bank", false, "Sauvegarde de l'argent!")

@@ -9,7 +9,7 @@ Player.__index = Player
 
 -- Meta table for users
 setmetatable(Player, {
-	__call = function(self, source, permission_level, money, identifier, group)
+	__call = function(self, source, permission_level, money, identifier, group, ped)
 		local pl = {}
 
 		pl.source = source
@@ -19,6 +19,9 @@ setmetatable(Player, {
 		pl.group = group
 		pl.coords = {x = 0.0, y = 0.0, z = 0.0}
 		pl.session = {}
+		pl.hunger = 100
+		pl.thirst = 100
+		pl.ped = ped
 
 		return setmetatable(pl, Player)
 	end
@@ -44,6 +47,38 @@ end
 -- Kicks a player with specified reason
 function Player:kick(reason)
 	DropPlayer(self.source, reason)
+end
+
+-- Add the value corresponding to the object which was eat or drink by the player
+function Player:regenerate(what)
+	if (what.thirst.activate == true) then
+		self.thirst = self.thirst + what.thirst.value
+	end
+	if (what.hunger.activate == true) then
+		self.hunger = self.hunger + what.hunger.value
+	end
+end
+
+--  That function is called with an interval and remove thirst and hunger
+function Player:spendingEnergy()
+    if (self.thirst == 0 or self.hunger == 0) then
+    	return ;
+    end
+	self.thirst = self.thirst - 2
+	self.hunger = self.hunger - 1
+end
+
+-- Reset hunger and thirst of the player (when he spawn)
+function Player:resetStarve()
+	self.hunger = 100
+	self.thirst = 100
+end
+
+-- Begin to remove life to the player because hunger or thirst is == 0
+function Player:starving()
+	if (self.hunger == 0 or self.thirst == 0) then
+    	TriggerClientEvent('starvingClient', self.source)
+	end
 end
 
 -- Sets the player money (required to call this from now)
