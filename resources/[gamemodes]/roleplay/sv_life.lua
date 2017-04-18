@@ -8,17 +8,16 @@ AddEventHandler('life:savepos', function(pos)
 
     local playerIdentifier = player.identifier
     print('Save Position: '..playerIdentifier)
-    
+
       -- Get Id
       local exeQuery = MySQL:executeQuery("SELECT id FROM users WHERE identifier = '@identifier'", {['@identifier'] = playerIdentifier})
       local id = MySQL:getResults(exeQuery, {'id'}, "id")
 
-      -- Get player position
-      x, y, z = table.unpack(GetEntityCoords(GetPlayerPed(-1), true))
+
 
       -- Save this shit to the databasett
       MySQL:executeQuery("UPDATE pos SET x ='@x', y = '@y' , z = '@z' WHERE id = '@id'",
-      {['@id'] = id, ['@x'] = x, ['@y'] = y, ['@z'] = z})
+      {['@id'] = id, ['@x'] = pos.x, ['@y'] = pos.y, ['@z'] = pos.z})
 
       -- Trigger some client stuff
       TriggerClientEvent("es_freeroam:notify", source, "CHAR_DEFAULT", 1, ""..playerIdentifier, false, "Position sauvegardé!\n")
