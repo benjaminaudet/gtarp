@@ -1,6 +1,8 @@
 <head>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:light,regular,medium,thin,italic,mediumitalic,bold" title="roboto">
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
 	<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+	<script src="progressbar.js" type="text/javascript"></script>
 	<script>
 		function addCommas(nStr) {
 			nStr += '';
@@ -19,7 +21,7 @@
 
 
 			window.addEventListener('message', function(event){
-				var item = event.data;
+				var item = event.detail;
 
 				if(item.setmoney == true) {
 
@@ -29,10 +31,78 @@
 				}
 
 				if (item.starving.activate) {
-					$('#starve').html("\
-								<div style='color:green'>hunger: "+item.starving.hunger+"</div>\
-								<div style='color:#0087FF'>thirst: "+item.starving.thirst+"</div>\
-								")
+					// progressbar.js@1.0.0 version is used
+					// Docs: http://progressbarjs.readthedocs.org/en/1.0.0/
+
+					var hunger = new ProgressBar.SemiCircle(container, {
+					  strokeWidth: 6,
+					  color: '#00cc00',
+					  trailColor: '#00cc00',
+					  trailWidth: 1,
+					  easing: 'easeInOut',
+					  duration: 1400,
+					  svgStyle: null,
+					  text: {
+					    value: '',
+					    alignToBottom: false
+					  },
+					  from: {color: '#222222'},
+					  to: {color: '#00cc00'},
+					  // Set default step function for all animate calls
+					  step: (state, hunger) => {
+					    hunger.path.setAttribute('stroke', state.color);
+					    var value = Math.round(hunger.value() * 100);
+					    if (value === 0) {
+					      hunger.setText('');
+					    } else {
+					      hunger.setText(value);
+					    }
+
+					    hunger.text.style.color = state.color;
+					  }
+					});
+					var thirst = new ProgressBar.SemiCircle(container, {
+					  strokeWidth: 6,
+					  color: '#0000cc',
+					  trailColor: '#0000cc',
+					  trailWidth: 1,
+					  easing: 'easeInOut',
+					  duration: 1400,
+					  svgStyle: null,
+					  text: {
+					    value: '',
+					    alignToBottom: false
+					  },
+					  from: {color: '#222222'},
+					  to: {color: '#0000cc'},
+					  // Set default step function for all animate calls
+					  step: (state, thirst) => {
+					    thirst.path.setAttribute('stroke', state.color);
+					    var value = Math.round(thirst.value() * 100);
+					    if (value === 0) {
+					      thirst.setText('');
+					    } else {
+					      thirst.setText(value);
+					    }
+
+					    thirst.text.style.color = state.color;
+					  }
+					});
+
+					hunger.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+					hunger.text.style.fontSize = '2rem';
+
+					thirst.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+					thirst.text.style.fontSize = '2rem';
+
+					hunger.animate(item.starving.hunger / 100);  // Number from 0.0 to 1.0
+					thirst.animate(item.starving.thirst / 100);  // Number from 0.0 to 1.0
+
+					$('.progressbar-text').first().css('top', '0px')
+					$('.progressbar-text').last().css('top', '115px')
+					$('svg').last().css('transform', 'rotate(180deg)')
+					$('container svg').css('width', '200px')
+
 				}
 				if(item.addcash == true){
 					$('.tiny').remove();
@@ -90,6 +160,11 @@
 			 1px 1px 0 #000;
 				}
 
+		#starve-div {
+			width: 200px;
+			height: 100px;
+		}
+
 		#container {
 			position: absolute;
 			top: 40; right: 40;
@@ -105,7 +180,9 @@
 		<div id="money">
 
 			<div id="cash"></div>
-			<div id="starve"></div>
+			<div id="starve-div">
+				<div id="starve"></div>
+			</div>
 		</div>
 	</div>
 </body>
