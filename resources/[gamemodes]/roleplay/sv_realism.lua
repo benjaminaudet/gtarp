@@ -7,7 +7,7 @@
 require "resources/essentialmode/lib/MySQL"
 
 -- MySQL:open("IP", "databasname", "user", "password")
-MySQL:open("localhost", "gta5_gamemode_essential", "root", "caca")
+MySQL:open("localhost", "gta5_gamemode_essential", "root", "jujumanu78")
 
 RegisterServerEvent('rp:death')
 AddEventHandler("rp:death", function(playerPed)

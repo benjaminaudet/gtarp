@@ -4,6 +4,8 @@ MySQL:open("localhost", "gta5_gamemode_essential", "root", "jujumanu78")
 
 RegisterServerEvent('life:savepos')
 AddEventHandler('life:savepos', function(pos)
+
+  new_pos = pos
   TriggerEvent('es:getPlayerFromId', source, function(player)
 
     local playerIdentifier = player.identifier
@@ -11,16 +13,14 @@ AddEventHandler('life:savepos', function(pos)
 
       -- Get Id
       local exeQuery = MySQL:executeQuery("SELECT id FROM users WHERE identifier = '@identifier'", {['@identifier'] = playerIdentifier})
-      local id = MySQL:getResults(exeQuery, {'id'}, "id")
-
-
+      local results = MySQL:getResults(exeQuery, {'id'}, "id")
 
       -- Save this shit to the databasett
       MySQL:executeQuery("UPDATE pos SET x ='@x', y = '@y' , z = '@z' WHERE id = '@id'",
-      {['@id'] = id, ['@x'] = pos.x, ['@y'] = pos.y, ['@z'] = pos.z})
+      {['@id'] = results.id, ['@x'] = new_pos.x, ['@y'] = new_pos.y, ['@z'] = new_pos.z})
 
       -- Trigger some client stuff
-      TriggerClientEvent("es_freeroam:notify", source, "CHAR_DEFAULT", 1, ""..playerIdentifier, false, "Position sauvegardé!\n")
+      -- TriggerClientEvent("es_freeroam:notify", source, "CHAR_DEFAULT", 1, ""..playerId, false, "Position sauvegardé!\n")
   end)
 end)
 
