@@ -7,11 +7,11 @@ MySQL:open("localhost", "gta5_gamemode_essential", "root", "jujumanu78")
         TriggerEvent('es:getPlayerFromId', source, function(player)
 
             -- Get Id
-            local exeQuery = MySQL:executeQuery("SELECT id FROM users WHERE identifier = '@identifier'", {['@identifier'] = player.identifier})
-            local results = MySQL:getResults(exeQuery, {'id'}, "id")
+            local exeQueryPlayerInfo = MySQL:executeQuery("SELECT id FROM users WHERE identifier = '@identifier'", {['@identifier'] = player.identifier})
+            local resultsPlayerInfo = MySQL:getResults(exeQueryPlayerInfo, {'id'}, "id")
 
             -- Get Coords by Id
-            local executed_query = MySQL:executeQuery("SELECT * FROM pos WHERE id = '@id'", {['@id'] = results.id})
+            local executed_query = MySQL:executeQuery("SELECT * FROM pos WHERE id = '@id'", {['@id'] = resultsPlayerInfo.id})
             result = MySQL:getResults(executed_query, {'x', 'y', 'z'}, "id")
 
             TriggerClientEvent('rp:getSpawnPositions', result)
