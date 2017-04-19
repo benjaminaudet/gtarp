@@ -2,8 +2,8 @@
 require "resources/essentialmode/lib/MySQL"
 MySQL:open("localhost", "gta5_gamemode_essential", "root", "jujumanu78")
 
-RegisterServerEvent('life:savepos')
-AddEventHandler('life:savepos', function(pos)
+RegisterServerEvent('rp:savepos')
+AddEventHandler('rp:savepos', function(pos)
 
   new_pos = pos
   TriggerEvent('es:getPlayerFromId', source, function(player)
@@ -35,8 +35,8 @@ TriggerEvent('es:addCommand', 'weapons', function(source, args, user)
 
 end)
 
-RegisterServerEvent('life:resetStarve')
-AddEventHandler('life:resetStarve', function()
+RegisterServerEvent('rp:resetStarve')
+AddEventHandler('rp:resetStarve', function()
   TriggerEvent('es:getPlayerFromId', source, function(player)
 
     player:resetStarve()
@@ -44,8 +44,8 @@ AddEventHandler('life:resetStarve', function()
   end)
 end)
 
-RegisterServerEvent('life:starving')
-AddEventHandler('life:starving', function()
+RegisterServerEvent('rp:starving')
+AddEventHandler('rp:starving', function()
   TriggerEvent('es:getPlayerFromId', source, function(player)
 
     player:spendingEnergy()
@@ -56,8 +56,8 @@ AddEventHandler('life:starving', function()
   end)
 end)
 
-RegisterServerEvent('life:save_money')
-AddEventHandler('life:save_money', function()
+RegisterServerEvent('rp:save_money')
+AddEventHandler('rp:save_money', function()
   TriggerEvent('es:getPlayerFromId', source, function(player)
 
     local id = player.identifier
@@ -74,8 +74,8 @@ AddEventHandler('life:save_money', function()
   end)
 end)
 
-RegisterServerEvent('life:salary')
-AddEventHandler('life:salary', function()
+RegisterServerEvent('rp:salary')
+AddEventHandler('rp:salary', function()
   	print("Player ID " ..source)
   	local salary = 50
 	-- Get the players money amount

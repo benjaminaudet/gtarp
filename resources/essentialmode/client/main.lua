@@ -56,7 +56,7 @@ AddEventHandler("playerSpawned", function()
 		DecorSetInt(GetPlayerPed(-1), k, v)
 	end
 
-	TriggerServerEvent('life:resetStarve')
+	TriggerServerEvent('rp:resetStarve')
 end)
 
 RegisterNetEvent('isStarve')

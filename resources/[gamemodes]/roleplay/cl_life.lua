@@ -1,13 +1,13 @@
 Citizen.CreateThread(function ()
 	Citizen.Wait(1000)
-	TriggerServerEvent('life:save_money')
-	TriggerServerEvent('life:starving')
+	TriggerServerEvent('rp:save_money')
+	TriggerServerEvent('rp:starving')
 	while true do
 		Citizen.Wait(60000)
-		TriggerServerEvent('life:salary')
-		TriggerServerEvent('life:starving')
-		TriggerServerEvent('life:savepos', GetSelfPlayerPosition())
-		TriggerServerEvent('life:save_money')
+		TriggerServerEvent('rp:salary')
+		TriggerServerEvent('rp:starving')
+		TriggerServerEvent('rp:savepos', GetSelfPlayerPosition())
+		TriggerServerEvent('rp:save_money')
 	end
 end)
 
