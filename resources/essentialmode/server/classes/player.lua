@@ -44,6 +44,10 @@ function Player:setCoords(x, y, z)
 	self.coords.x, self.coords.y, self.coords.z = x, y, z
 end
 
+function Player:getCoords()
+	return {x = self.coords.x, y = self.coords.y, z = self.coords.z}
+end
+
 -- Kicks a player with specified reason
 function Player:kick(reason)
 	DropPlayer(self.source, reason)

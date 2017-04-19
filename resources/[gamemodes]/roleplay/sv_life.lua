@@ -19,6 +19,11 @@ AddEventHandler('life:savepos', function(pos)
       MySQL:executeQuery("UPDATE pos SET x ='@x', y = '@y' , z = '@z' WHERE id = '@id'",
       {['@id'] = results.id, ['@x'] = new_pos.x, ['@y'] = new_pos.y, ['@z'] = new_pos.z})
 
+      player:setCoords(new_pos.x, new_pos.y, new_pos.z)
+      local coords = player:getCoords()
+
+      print("x: "..x..", y: "..y..", z: "..z..)
+
       -- Trigger some client stuff
       -- TriggerClientEvent("es_freeroam:notify", source, "CHAR_DEFAULT", 1, ""..playerId, false, "Position sauvegardé!\n")
   end)
