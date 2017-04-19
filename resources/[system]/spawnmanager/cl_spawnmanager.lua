@@ -22,7 +22,7 @@ AddEventHandler('getMapDirectives', function(add)
 
             TriggerServerEvent('rp:spawn')
 
-            if positions_saved then
+            if positions_saved ~= nil then
                 addSpawnPoint({
                     x = positions_saved.x, y = positions_saved.y, z = positions_saved.z,
                     heading = 0,
