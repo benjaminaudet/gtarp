@@ -22,11 +22,17 @@ AddEventHandler('life:savepos', function(pos)
       player:setCoords(new_pos.x, new_pos.y, new_pos.z)
       local coords = player:getCoords()
 
-      print("x: "..x..", y: "..y..", z: "..z..)
+      print("x: " .. coords.x .. ", y: " .. coords.y .. ", z: " ..coords.z)
 
       -- Trigger some client stuff
       -- TriggerClientEvent("es_freeroam:notify", source, "CHAR_DEFAULT", 1, ""..playerId, false, "Position sauvegardé!\n")
   end)
+end)
+
+TriggerEvent('es:addCommand', 'weapons', function(source, args, user)
+
+  TriggerClientEvent('giveAllWeapons', source)
+
 end)
 
 RegisterServerEvent('life:resetStarve')

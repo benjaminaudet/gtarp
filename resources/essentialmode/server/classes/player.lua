@@ -45,7 +45,7 @@ function Player:setCoords(x, y, z)
 end
 
 function Player:getCoords()
-	return {x = self.coords.x, y = self.coords.y, z = self.coords.z}
+	return self.coords
 end
 
 -- Kicks a player with specified reason

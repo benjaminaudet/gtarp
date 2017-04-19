@@ -62,8 +62,6 @@ end)
 RegisterNetEvent('isStarve')
 AddEventHandler('isStarve', function(hunger, thirst)
 
-	Citizen.Trace("isStarve event")
-
 	SendNUIMessage({
 		starving = {activate = true, hunger = hunger, thirst = thirst}
 	})
