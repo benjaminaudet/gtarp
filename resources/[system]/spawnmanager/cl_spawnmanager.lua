@@ -4,6 +4,13 @@ local spawnPoints = {}
 -- auto-spawn enabled flag
 local autoSpawnEnabled = false
 local autoSpawnCallback
+local positions_saved = nil
+
+AddEventHandler('rp:getSpawnPositions', function(positions)
+    if positions.x and positions.y and positions.z then
+        positions_saved = positions
+    end 
+end)
 
 -- support for mapmanager maps
 AddEventHandler('getMapDirectives', function(add)
@@ -13,41 +20,51 @@ AddEventHandler('getMapDirectives', function(add)
         return function(opts)
             local x, y, z, heading
 
-            local s, e = pcall(function()
-                -- is this a map or an array?
-                if opts.x then
-                    x = opts.x
-                    y = opts.y
-                    z = opts.z
-                else
-                    x = opts[1]
-                    y = opts[2]
-                    z = opts[3]
-                end
+            TriggerServerEvent('rp:spawn')
 
-                x = x + 0.0001
-                y = y + 0.0001
-                z = z + 0.0001
-
-                -- get a heading and force it to a float, or just default to null
-                heading = opts.heading and (opts.heading + 0.01) or 0
-
-                -- add the spawnpoint
+            if positions_saved then
                 addSpawnPoint({
-                    x = x, y = y, z = z,
-                    heading = heading,
+                    x = positions_saved.x, y = positions_saved.y, z = positions_saved.z,
+                    heading = 0,
                     model = model
                 })
+            else
+                local s, e = pcall(function()
+                    -- is this a map or an array?
+                    if opts.x then
+                        x = opts.x
+                        y = opts.y
+                        z = opts.z
+                    else
+                        x = opts[1]
+                        y = opts[2]
+                        z = opts[3]
+                    end
 
-                -- recalculate the model for storage
-                if not tonumber(model) then
-                    model = GetHashKey(model, _r)
-                end
+                    x = x + 0.0001
+                    y = y + 0.0001
+                    z = z + 0.0001
 
-                -- store the spawn data in the state so we can erase it later on
-                state.add('xyz', { x, y, z })
-                state.add('model', model)
-            end)
+                    -- get a heading and force it to a float, or just default to null
+                    heading = opts.heading and (opts.heading + 0.01) or 0
+
+                    -- add the spawnpoint
+                    addSpawnPoint({
+                        x = x, y = y, z = z,
+                        heading = heading,
+                        model = model
+                    })
+
+                    -- recalculate the model for storage
+                    if not tonumber(model) then
+                        model = GetHashKey(model, _r)
+                    end
+
+                    -- store the spawn data in the state so we can erase it later on
+                    state.add('xyz', { x, y, z })
+                    state.add('model', model)
+                end)
+            end
 
             if not s then
                 Citizen.Trace(e .. "\n")
