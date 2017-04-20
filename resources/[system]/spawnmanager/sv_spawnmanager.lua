@@ -14,6 +14,7 @@ MySQL:open("localhost", "gta5_gamemode_essential", "root", "jujumanu78")
             local executed_query = MySQL:executeQuery("SELECT * FROM pos WHERE id = '@id'", {['@id'] = resultsPlayerInfo.id})
             result = MySQL:getResults(executed_query, {'x', 'y', 'z'}, "id")
 
+            print ('Get Position OK')
             TriggerClientEvent('rp:getSpawnPositions', result)
         end)
     end)

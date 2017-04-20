@@ -11,13 +11,10 @@ AddEventHandler('rp:savepos', function(pos)
     local playerIdentifier = player.identifier
     print('Save Position: '..playerIdentifier)
 
-      -- Get Id
-      local exeQuery = MySQL:executeQuery("SELECT id FROM users WHERE identifier = '@identifier'", {['@identifier'] = playerIdentifier})
-      local results = MySQL:getResults(exeQuery, {'id'}, "id")
 
-      -- Save this shit to the databasett
-      MySQL:executeQuery("UPDATE pos SET x ='@x', y = '@y' , z = '@z' WHERE id = '@id'",
-      {['@id'] = results.id, ['@x'] = new_pos.x, ['@y'] = new_pos.y, ['@z'] = new_pos.z})
+      -- Save this shit to the database
+      MySQL:executeQuery("UPDATE pos SET x ='@x', y = '@y' , z = '@z' WHERE user_id = '@user_id'",
+      {['@user_id'] = playerIdentifier, ['@x'] = new_pos.x, ['@y'] = new_pos.y, ['@z'] = new_pos.z})
 
       player:setCoords(new_pos.x, new_pos.y, new_pos.z)
       local coords = player:getCoords()

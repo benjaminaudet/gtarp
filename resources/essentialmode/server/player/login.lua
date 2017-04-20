@@ -86,6 +86,9 @@ function registerUser(identifier, source, ped)
 		MySQL:executeQuery("INSERT INTO users (`identifier`, `permission_level`, `money`, `group`) VALUES ('@username', '0', '@money', 'user')",
 		{['@username'] = identifier, ['@money'] = settings.defaultSettings.startingCash})
 
+		MySQL:executeQuery("INSERT INTO pos (`user_id`, `x`, `y`, `z`, `h`) VALUES ('@user_id', '0', '0', '0', '0')",
+		{['@user_id'] = identifier })
+
 		LoadUser(identifier, source, true, ped)
 	else
 		LoadUser(identifier, source, false, ped)

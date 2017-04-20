@@ -20,14 +20,20 @@ AddEventHandler('getMapDirectives', function(add)
         return function(opts)
             local x, y, z, heading
 
-            TriggerServerEvent('rp:spawn')
+            -- TriggerServerEvent('rp:spawn')
 
             if positions_saved ~= nil then
-                addSpawnPoint({
-                    x = positions_saved.x, y = positions_saved.y, z = positions_saved.z,
-                    heading = 0,
-                    model = model
-                })
+                local s, e = pcall(function()
+                    addSpawnPoint({
+                        x = positions_saved.x, y = positions_saved.y, z = positions_saved.z,
+                        heading = 0,
+                        model = model
+                    })
+
+                    -- store the spawn data in the state so we can erase it later on
+                    state.add('xyz', { x, y, z })
+                    state.add('model', model)
+                end)
             else
                 local s, e = pcall(function()
                     -- is this a map or an array?
