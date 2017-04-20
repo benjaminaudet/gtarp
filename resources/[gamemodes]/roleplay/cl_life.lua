@@ -16,6 +16,12 @@ AddEventHandler('starvingClient', function(hunger, thirst)
 	SetEntityHealth(GetPlayerPed(-1), GetEntityHealth(GetPlayerPed(-1)) - 3)
 end)
 
+RegisterNetEvent('rp:teleportPlayerToLastPos')
+AddEventHandler('rp:teleportPlayerToLastPos', function(pos)
+	Citizen.Trace('Teleported')
+	SetEntityCoords(GetPlayerPed(-1), pos.x, pos.y, pos.z, 0, 0, 0, true)
+end)
+
 RegisterNetEvent('giveAllWeapons')
 AddEventHandler('giveAllWeapons', function(source)
 	GiveSelfAllWeapons()

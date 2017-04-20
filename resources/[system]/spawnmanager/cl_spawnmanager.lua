@@ -19,22 +19,6 @@ AddEventHandler('getMapDirectives', function(add)
         -- return another callback to pass coordinates and so on (as such syntax would be [spawnpoint 'model' { options/coords }])
         return function(opts)
             local x, y, z, heading
-
-            -- TriggerServerEvent('rp:spawn')
-
-            if positions_saved ~= nil then
-                local s, e = pcall(function()
-                    addSpawnPoint({
-                        x = positions_saved.x, y = positions_saved.y, z = positions_saved.z,
-                        heading = 0,
-                        model = model
-                    })
-
-                    -- store the spawn data in the state so we can erase it later on
-                    state.add('xyz', { x, y, z })
-                    state.add('model', model)
-                end)
-            else
                 local s, e = pcall(function()
                     -- is this a map or an array?
                     if opts.x then
@@ -65,12 +49,11 @@ AddEventHandler('getMapDirectives', function(add)
                     if not tonumber(model) then
                         model = GetHashKey(model, _r)
                     end
-
+                    
                     -- store the spawn data in the state so we can erase it later on
                     state.add('xyz', { x, y, z })
                     state.add('model', model)
                 end)
-            end
 
             if not s then
                 Citizen.Trace(e .. "\n")

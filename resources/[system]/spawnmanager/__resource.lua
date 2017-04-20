@@ -8,4 +8,3 @@ export 'setAutoSpawn'
 export 'setAutoSpawnCallback'
 export 'forceRespawn'
 
-server_script 'sv_spawnmanager.lua'

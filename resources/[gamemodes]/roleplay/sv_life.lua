@@ -8,18 +8,17 @@ AddEventHandler('rp:savepos', function(pos)
   new_pos = pos
   TriggerEvent('es:getPlayerFromId', source, function(player)
 
-    local playerIdentifier = player.identifier
-    print('Save Position: '..playerIdentifier)
+    print('Save Position: '..player.identifier)
 
+
+    local executed_query = MySQL:executeQuery("SELECT * FROM pos WHERE id = '@id'", {['@id'] = player.id})
+    local results = MySQL:getResults(executed_query, {'id'}, "id")
 
       -- Save this shit to the database
-      MySQL:executeQuery("UPDATE pos SET x ='@x', y = '@y' , z = '@z' WHERE user_id = '@user_id'",
-      {['@user_id'] = playerIdentifier, ['@x'] = new_pos.x, ['@y'] = new_pos.y, ['@z'] = new_pos.z})
+    MySQL:executeQuery("UPDATE pos SET x ='@x', y = '@y' , z = '@z' WHERE user_id = '@user_id'",
+    {['@user_id'] = player.id, ['@x'] = new_pos.x, ['@y'] = new_pos.y, ['@z'] = new_pos.z})
 
       player:setCoords(new_pos.x, new_pos.y, new_pos.z)
-      local coords = player:getCoords()
-
-      print("x: " .. coords.x .. ", y: " .. coords.y .. ", z: " ..coords.z)
 
       -- Trigger some client stuff
       -- TriggerClientEvent("es_freeroam:notify", source, "CHAR_DEFAULT", 1, ""..playerId, false, "Position sauvegardé!\n")
