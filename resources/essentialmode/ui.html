@@ -1,10 +1,6 @@
 <head>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:light,regular,medium,thin,italic,mediumitalic,bold" title="roboto">
-	<link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
-	<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"> -->
 	<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
-	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script> -->
-	<script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/1.0.0/dist/progressbar.js" type="text/javascript"></script>
 	<script>
 		function addCommas(nStr) {
 			nStr += '';
@@ -20,94 +16,15 @@
 
 		window.onload = function(e){
 			// NUI Callback
-
-
 			window.addEventListener('message', function(event){
 				var item = event.data;
 
-				if(item.setmoney == true) {
-
-					document.getElementById("cash").innerHTML = addCommas(item.money) 
-					+ "<div style='display:inline-block;padding-left: 10px;'><font style='color: rgb(0, 125, 0); font-weight: 700; margin-right: 6px;'> €</font>" ;
-					
-				}
-
-				if (item.starving.activate) {
-					// progressbar.js@1.0.0 version is used
-					// Docs: http://progressbarjs.readthedocs.org/en/1.0.0/
-
-					$('svg').remove()
-
-					var hunger = new ProgressBar.SemiCircle(container, {
-					  strokeWidth: 10,
-					  color: '#00cc00',
-					  trailColor: '#ffffff',
-					  trailWidth: 1,
-					  easing: 'easeInOut',
-					  duration: 1400,
-					  svgStyle: null,
-					  text: {
-					    value: '',
-					    alignToBottom: false
-					  },
-					  from: {color: '#54DE7C'},
-					  to: {color: '#54DE7C'},
-					  // Set default step function for all animate calls
-					  step: (state, hunger) => {
-					    hunger.path.setAttribute('stroke', state.color);
-					    var value = Math.round(hunger.value() * 100);
-					    if (value === 0) {
-					      hunger.setText('');
-					    } else {
-					      hunger.setText(value);
-					    }
-
-					    hunger.text.style.color = state.color;
-					  }
-					});
-					var thirst = new ProgressBar.SemiCircle(container, {
-					  strokeWidth: 10,
-					  color: '#0000cc',
-					  trailColor: '#ffffff',
-					  trailWidth: 1,
-					  easing: 'easeInOut',
-					  duration: 1400,
-					  svgStyle: null,
-					  text: {
-					    value: '',
-					    alignToBottom: false
-					  },
-					  from: {color: '#4298FF'},
-					  to: {color: '#4298FF'},
-					  // Set default step function for all animate calls
-					  step: (state, thirst) => {
-					    thirst.path.setAttribute('stroke', state.color);
-					    var value = Math.round(thirst.value() * 100);
-					    if (value === 0) {
-					      thirst.setText('');
-					    } else {
-					      thirst.setText(value);
-					    }
-
-					    thirst.text.style.color = state.color;
-					  }
-					});
-
-
-
-					hunger.set(item.starving.hunger / 100);  // Number from 0.0 to 1.0
-					thirst.set(item.starving.thirst / 100);  // Number from 0.0 to 1.0
-
-					$('svg').last().css('transform', 'rotate(180deg)')
-					$('#container svg').css('width', '100px')
-    				$('svg').first().css('position', 'fixed').css('bottom', '75px').css('right', '25px')
-    				$('svg').last().css('position', 'fixed').css('bottom', '25px').css('right', '25px')
-    				$('.progressbar-text').remove()
-				}
+				if(item.setmoney == true)
+					document.getElementById("cash").innerHTML = "<div><font style='color: rgb(0, 125, 0); font-weight: 700; margin-right: 6px;'>£</font>" + addCommas(item.money);
 				if(item.addcash == true){
-					$('.tiny').remove();
+					$(".tiny").remove();
 
-					var element = $("<div class='tiny'>+ "+addCommas(item.money)+"<font style='color: rgb(0, 125, 0); font-weight: 700; margin-right: 6px;'> €</font></div>")
+					var element = $("<div class='tiny'>+<font style='color: rgb(0, 125, 0); font-weight: 700; margin-right: 6px;'>£</font>"+addCommas(item.money)+"</div>")
 					$("#money").append(element)
 
 					setTimeout(function(){
@@ -115,9 +32,9 @@
 					}, 1000)
 				}
 				if(item.removecash == true){
-					$('.tiny').remove();
-
-					var element = $("<div class='tiny'>- "+addCommas(item.money)+"<font style='color: rgb(250, 0, 0); font-weight: 700; margin-right: 6px;'> €</font></div>")
+					$(".tiny").remove();
+					
+					var element = $("<div class='tiny'>-<font style='color: rgb(250, 0, 0); font-weight: 700; margin-right: 6px;'>£</font>"+addCommas(item.money)+"</div>")
 					$("#money").append(element)
 
 					setTimeout(function(){
@@ -129,10 +46,6 @@
 				}
 				if(item.setDisplay == true){
 					$("#money").css('opacity', item.display)
-				}
-
-				if(item.starving == true) {
-					
 				}
 			})
 		}
@@ -146,15 +59,12 @@
 		.tiny {
 			font-size: 29px;
 			position: absolute; right: 10;
-			display: inline-block;
 		}
 		#money {
 			font-family: pcdown;
-			font-size: 35px;
+			font-size: 2rem;
 			color: white;
 			padding: 4px;
-			position: fixed;
-			right: 0;
 		text-shadow:
 		   -1px -1px 0 #000,
 			1px -1px 0 #000,
@@ -164,7 +74,7 @@
 
 		#container {
 			position: absolute;
-			top: 40; right: 40;
+			top: 75; right: 40;
 		}
 	</style>
 </head>
@@ -176,10 +86,7 @@
 	<div id="container">
 		<div id="money">
 
-			<div id="cash"></div>
-			<div id="starve-div">
-				<div id="starve"></div>
-			</div>
+			<div id="cash"/>
 		</div>
 	</div>
 </body>

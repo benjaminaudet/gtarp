@@ -43,6 +43,8 @@ end)
 
 AddEventHandler('playerDropped', function()
 	if(Users[source])then
+		TriggerEvent("es:playerDropped", Users[source])
+
 		MySQL:executeQuery("UPDATE users SET `money`='@value' WHERE identifier = '@identifier'",
 		{['@value'] = Users[source].money, ['@identifier'] = Users[source].identifier})
 
@@ -53,14 +55,14 @@ end)
 local justJoined = {}
 
 RegisterServerEvent('es:firstJoinProper')
-AddEventHandler('es:firstJoinProper', function(ped)
+AddEventHandler('es:firstJoinProper', function()
 	local identifiers = GetPlayerIdentifiers(source)
 	for i = 1, #identifiers do
 		if(Users[source] == nil)then
 			debugMsg("Essential | Loading user: " .. GetPlayerName(source))
 
 			local identifier = identifiers[i]
-			registerUser(identifier, source, ped)
+			registerUser(identifier, source)
 
 			TriggerEvent('es:initialized', source)
 			justJoined[source] = true

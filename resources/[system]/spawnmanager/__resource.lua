@@ -1,4 +1,4 @@
-client_script 'cl_spawnmanager.lua'
+client_script 'spawnmanager.lua'
 
 export 'getRandomSpawnPoint'
 export 'spawnPlayer'
@@ -7,4 +7,3 @@ export 'loadSpawns'
 export 'setAutoSpawn'
 export 'setAutoSpawnCallback'
 export 'forceRespawn'
-
