@@ -32,3 +32,17 @@ dependency 'essentialmode'
 
 client_script 'es_admin/cl_admin.lua'
 server_script 'es_admin/sv_admin.lua'
+
+-- Hands up
+
+client_script 'hands_up/cl_hands_up.lua'
+
+-- Garages
+
+client_script 'garages/cl_garage.lua'
+server_script 'garages/sv_garage.lua'
+
+-- Voip
+
+client_script 'voip/cl_voip.lua'
+server_script 'voip/sv_voip.lua'

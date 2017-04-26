@@ -1,14 +1,26 @@
+Keys = {
+    ["ESC"] = 322, ["F1"] = 288, ["F2"] = 289, ["F3"] = 170, ["F5"] = 166, ["F6"] = 167, ["F7"] = 168, ["F8"] = 169, ["F9"] = 56, ["F10"] = 57,
+    ["~"] = 243, ["1"] = 157, ["2"] = 158, ["3"] = 160, ["4"] = 164, ["5"] = 165, ["6"] = 159, ["7"] = 161, ["8"] = 162, ["9"] = 163, ["-"] = 84, ["="] = 83, ["BACKSPACE"] = 177,
+    ["TAB"] = 37, ["Q"] = 44, ["W"] = 32, ["E"] = 38, ["R"] = 45, ["T"] = 245, ["Y"] = 246, ["U"] = 303, ["P"] = 199, ["["] = 39, ["]"] = 40, ["ENTER"] = 18,
+    ["CAPS"] = 137, ["A"] = 34, ["S"] = 8, ["D"] = 9, ["F"] = 23, ["G"] = 47, ["H"] = 74, ["K"] = 311, ["L"] = 182,
+    ["LEFTSHIFT"] = 21, ["Z"] = 20, ["X"] = 73, ["C"] = 26, ["V"] = 0, ["B"] = 29, ["N"] = 249, ["M"] = 244, [","] = 82, ["."] = 81,
+    ["LEFTCTRL"] = 36, ["LEFTALT"] = 19, ["SPACE"] = 22, ["RIGHTCTRL"] = 70,
+    ["HOME"] = 213, ["PAGEUP"] = 10, ["PAGEDOWN"] = 11, ["DELETE"] = 178,
+    ["LEFT"] = 174, ["RIGHT"] = 175, ["TOP"] = 27, ["DOWN"] = 173,
+    ["NENTER"] = 201, ["N4"] = 108, ["N5"] = 60, ["N6"] = 107, ["N+"] = 96, ["N-"] = 97, ["N7"] = 117, ["N8"] = 61, ["N9"] = 118
+}
+
 local vehshop = {
 	opened = false,
-	title = "Vehicle Shop",
+	title = "Concessionnaire",
 	currentmenu = "main",
 	lastmenu = nil,
 	currentpos = nil,
-	selectedbutton = 0,
+	selectedbutton = 2,
 	marker = { r = 0, g = 155, b = 255, a = 200, type = 1 },
 	menu = {
 		x = 0.9,
-		y = 0.08,
+		y = 0.14,
 		width = 0.2,
 		height = 0.04,
 		buttons = 10,
@@ -17,11 +29,11 @@ local vehshop = {
 		scale = 0.4,
 		font = 0,
 		["main"] = {
-			title = "CATEGORIES",
+			title = "Type de vehicule",
 			name = "main",
 			buttons = {
-				{name = "Vehicles", description = ""},
-				{name = "Motorcycles", description = ""},
+				{name = "Voiture", description = ""},
+				{name = "Motos", description = ""},
 			}
 		},
 		["vehicles"] = {
@@ -290,6 +302,12 @@ local function LocalPed()
 return GetPlayerPed(-1)
 end
 
+function DisplayHelpText(str)
+	SetTextComponentFormat("STRING")
+	AddTextComponentString(str)
+	DisplayHelpTextFromStringLabel(0, 0, 1, -1)
+end
+
 function drawTxt(text,font,centre,x,y,scale,r,g,b,a)
 	SetTextFont(font)
 	SetTextProportional(0)
@@ -331,7 +349,7 @@ function ShowVehshopBlips(bool)
 				for i,b in ipairs(vehshop_blips) do
 					DrawMarker(1,b.pos.entering[1],b.pos.entering[2],b.pos.entering[3],0,0,0,0,0,0,2.001,2.0001,0.5001,0,155,255,200,0,0,0,0)
 					if vehshop.opened == false and IsPedInAnyVehicle(LocalPed(), true) == false and  GetDistanceBetweenCoords(b.pos.entering[1],b.pos.entering[2],b.pos.entering[3],GetEntityCoords(LocalPed())) < 5 then		
-						drawTxt('Appuyer sur ~g~Entrée~s~ pour accéder au menu d\'achat',0,1,0.5,0.8,0.6,255,255,255,255)
+  						DisplayHelpText("Appuyer sur ~INPUT_CONTEXT~ pour accéder au menu d\'achat")
 						currentlocation = b
 						inrange = true
 					end
@@ -380,6 +398,7 @@ function OpenCreator()
 	vehshop.currentmenu = "main"
 	vehshop.opened = true
 	vehshop.selectedbutton = 0
+	Citizen.Trace("Opened")
 	--[[Citizen.CreateThread(function()
 		RequestModel(GetHashKey('t20'))
 		while not HasModelLoaded(GetHashKey('t20')) do
@@ -536,7 +555,7 @@ local backlock = false
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
-		if IsControlJustPressed(1,201) and IsPlayerInRangeOfVehshop() then
+		if IsControlJustPressed(1, Keys['E']) and IsPlayerInRangeOfVehshop() then
 			if vehshop.opened then
 				CloseCreator()
 			else
@@ -602,20 +621,20 @@ Citizen.CreateThread(function()
 							end
 						end
 					end
-					if selected and IsControlJustPressed(1,201) then
+					if selected and IsControlJustPressed(1, Keys['E']) then
 						ButtonSelected(button)
 					end
 				end
 			end
 		end
 		if vehshop.opened then
-			if IsControlJustPressed(1,202) then
+			if IsControlJustPressed(1,Keys['A']) then
 				Back()
 			end
-			if IsControlJustReleased(1,202) then
+			if IsControlJustReleased(1,Keys['A']) then
 				backlock = false
 			end
-			if IsControlJustPressed(1,188) then
+			if IsControlJustPressed(1,Keys['W']) then
 				if vehshop.selectedbutton > 1 then
 					vehshop.selectedbutton = vehshop.selectedbutton -1
 					if buttoncount > 10 and vehshop.selectedbutton < vehshop.menu.from then
@@ -624,7 +643,7 @@ Citizen.CreateThread(function()
 					end
 				end
 			end
-			if IsControlJustPressed(1,187)then
+			if IsControlJustPressed(1,Keys['S'])then
 				if vehshop.selectedbutton < buttoncount then
 					vehshop.selectedbutton = vehshop.selectedbutton +1
 					if buttoncount > 10 and vehshop.selectedbutton > vehshop.menu.to then
@@ -651,9 +670,9 @@ function ButtonSelected(button)
 	local this = vehshop.currentmenu
 	local btn = button.name
 	if this == "main" then
-		if btn == "Vehicles" then
+		if btn == "Voiture" then
 			OpenMenu('vehicles')
-		elseif btn == "Motorcycles" then
+		elseif btn == "Motos" then
 			OpenMenu('motorcycles')
 		end
 	elseif this == "vehicles" then
@@ -704,7 +723,7 @@ function OpenMenu(menu)
 	end
 	vehshop.menu.from = 1
 	vehshop.menu.to = 10
-	vehshop.selectedbutton = 0
+	vehshop.selectedbutton = 1
 	vehshop.currentmenu = menu
 end
 
