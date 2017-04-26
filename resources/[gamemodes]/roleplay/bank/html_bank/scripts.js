@@ -152,27 +152,28 @@ $(document).ready(function() {
     // On 'Esc' call close method
     document.onkeyup = function(data) {
         if (data.which == 27) {
-            $.post('http://banking/close', JSON.stringify({}));
+            $.post('http://roleplay/close', JSON.stringify({}));
         }
     };
     // Handle Button Presses
     $(".btnWithdraw").click(function() {
-        $.post('http://banking/withdraw', JSON.stringify({}));
+        console.log("click withdraw")
+        $.post('http://roleplay/withdraw', JSON.stringify({}));
     });
     $(".btnDeposit").click(function() {
-        $.post('http://banking/deposit', JSON.stringify({}));
+        $.post('http://roleplay/deposit', JSON.stringify({}));
     });
     $(".btnTransfer").click(function() {
-        $.post('http://banking/transfer', JSON.stringify({}));
+        $.post('http://roleplay/transfer', JSON.stringify({}));
     });
     $(".btnBalance").click(function() {
-        $.post('http://banking/balance', JSON.stringify({}));
+        $.post('http://roleplay/balance', JSON.stringify({}));
     });
     $('.btnQuick').click($.throttle(2000, true, function(e) {
-        $.post('http://banking/quickCash', JSON.stringify({}));
+        $.post('http://roleplay/quickCash', JSON.stringify({}));
     }));
     $(".btnClose").click(function() {
-        $.post('http://banking/close', JSON.stringify({}));
+        $.post('http://roleplay/close', JSON.stringify({}));
     });
     $(".btnHome").click(function() {
         closeAll();
@@ -181,7 +182,7 @@ $(document).ready(function() {
     // Handle Form Submits
     $("#withdraw-form").submit(function(e) {
         e.preventDefault();
-        $.post('http://banking/withdrawSubmit', JSON.stringify({
+        $.post('http://roleplay/withdrawSubmit', JSON.stringify({
             amount: $("#withdraw-form #amount").val()
         }));
         $("#withdraw-form #amount").prop('disabled', true)
@@ -195,7 +196,7 @@ $(document).ready(function() {
     });
     $("#deposit-form").submit(function(e) {
         e.preventDefault();
-        $.post('http://banking/depositSubmit', JSON.stringify({
+        $.post('http://roleplay/depositSubmit', JSON.stringify({
             amount: $("#deposit-form #amount").val()
         }));
         $("#deposit-form #amount").prop('disabled', true)
@@ -208,7 +209,7 @@ $(document).ready(function() {
     });
     $("#transfer-form").submit(function(e) {
         e.preventDefault();
-        $.post('http://banking/transferSubmit', JSON.stringify({
+        $.post('http://roleplay/transferSubmit', JSON.stringify({
             amount: $("#transfer-form #amount").val(),
             toPlayer: $("#transfer-form #toPlayer").val()
         }));

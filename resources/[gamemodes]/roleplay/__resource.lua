@@ -21,3 +21,14 @@ server_script "bank/sv_bank.lua"
 
 server_script 'position_saver/sv_position_saver.lua'
 client_script 'position_saver/cl_position_saver.lua'
+
+-- Never Wanted
+
+client_script 'never_wanted/nowanted.lua'
+
+-- es_admin
+
+dependency 'essentialmode'
+
+client_script 'es_admin/cl_admin.lua'
+server_script 'es_admin/sv_admin.lua'
