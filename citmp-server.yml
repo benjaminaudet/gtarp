@@ -4,6 +4,8 @@ PreParseResources:
     - mapmanager
 
 AutoStartResources:
+    - essentialmode
+    - es_freeroam
     - chat
     - spawnmanager
     - fivem-map-skater
@@ -11,15 +13,13 @@ AutoStartResources:
     - rconlog
     - hardcap # prevents too many players from joining
     - scoreboard
-    - essentialmode
-    - es_freeroam
     - roleplay
-    
+
 # do change
 RconPassword: lovely
 
 # configure this, please
-Hostname: default FiveReborn server
+Hostname: FR - Melodia RP - Dev
 
 # don't change this, it'll cause your server to be unlisted
 Game: GTA5
