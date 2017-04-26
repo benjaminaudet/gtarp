@@ -8,8 +8,8 @@
   left: 200px;
 }
 html {
-  cursor:url('cursor.png'), auto;
   overflow: hidden;
+  cursor:url('cursor.png'), auto;
 }
 @font-face {
   font-family: 'pricedown';
@@ -144,20 +144,24 @@ h1,h2,h3,h4 {
   margin-right: auto;
 }
 .button {
-  flex-grow: 1;
-  align-items: center;
-  height: 40px;
-  text-align: center;
-  margin-left: 40px;
-  margin-right: 40px;
-  width: 300px;
-  background: #017ebc;
-  background-image: linear-gradient(to bottom, #017ebc, #005285);
-  border-radius: 4px;
+    flex-grow: 1;
+    align-items: center;
+    height: 40px;
+    text-align: center;
+    margin-left: 40px;
+    margin-right: 40px;
+    width: 300px;
+    background: #017ebc;
+    background-image: linear-gradient(to bottom, #1f1f1f, #313131);
+    border-radius: 4px;
+    color: #e0aa2c;
+    font-weight: 700;
+    font-size: 1.5em;
+    padding: 20px 20px 10px 20px;
+    text-decoration: none;
+}
+.button:hover {
   color: #ffffff;
-  font-size: 1.5em;
-  padding: 20px 20px 10px 20px;
-  text-decoration: none;
 }
 .button:focus, .submit {outline:0;}
 .number-display {
@@ -195,15 +199,21 @@ input[type=submit], .submit {
   height: 70px;
   text-align: center;
   width: 100%;
-  background: #017ebc;
-  background-image: linear-gradient(to bottom, #017ebc, #005285);
+  background: #292929;
   border-radius: 4px;
-  color: #ffffff;
+  color: #e0aa2c;
   font-size: 1.5em;
   padding: 20px 20px 20px 20px;
   text-decoration: none;
   border: none;
+  transition: 0.5s;
 }
+
+input[type=submit], .submit:hover {
+  background: #39a551;
+  color: #ddd;
+}
+
 .form {
   max-width: 74%;
   margin-left: auto;
