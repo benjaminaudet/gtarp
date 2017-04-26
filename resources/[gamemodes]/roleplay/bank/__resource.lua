@@ -16,8 +16,3 @@ files {
 
 client_script "bank/cl_bank.lua"
 server_script "bank/sv_bank.lua"
-
--- Position Saver
-
-server_script 'position_saver/sv_position_saver.lua'
-client_script 'position_saver/cl_position_saver.lua'
