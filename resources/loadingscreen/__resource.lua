@@ -1,6 +1,6 @@
 files {
     'index.html',
-    'rabtor.css',
+    'style_load.css',
     'music/Loading.ogg'
 }
 
