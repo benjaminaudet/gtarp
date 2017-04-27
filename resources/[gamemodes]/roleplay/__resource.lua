@@ -46,3 +46,7 @@ server_script 'garages/sv_garage.lua'
 
 client_script 'voip/cl_voip.lua'
 server_script 'voip/sv_voip.lua'
+
+-- Car HUD
+
+client_script 'carhud/carhud.lua'
