@@ -2,23 +2,25 @@
  <!-- Current version of the loading screen : 1.1.0 -->
  <!-- Projet 100% free, any problem contact rabtorlobby@gmail.com or release fivem or youtube -->
 <html>
+
     <head>
      <!-- Title not show in your server -->
-    	<title>Loading screen by RaBToRFR</title>
+    	<title>LoadingScreen</title>
      <!-- Add the css -->
-        <link href="rabtor.css" rel="stylesheet" type="text/css" />
+        <link href="style_load.css" rel="stylesheet" type="text/css" />
       <!-- Add script for the text -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
     </head>
-<style>#selector {width:100%; height:100%;}</style>
+
  <!-- If you want change the background please, change the background.gif to your link -->
  <!-- Note speedplay.fr is my domaine expire in 2018 so if the gif dosen't work in 2018 that is normal -->
-<img src='http://speedplay.fr/background.gif' id='selector'/>
+<img src='http://doteweb.com/projets/melodia/loadingscreen.jpg' id='selector'/>
     <body>
-      <audio autoplay="" id="Loading" loop=""><source src="music/Loading.ogg" type="audio/ogg" />
+        <audio autoplay="" id="Loading" loop="">
        <!-- If you want change the sound please, convert your sound in .ogg and put this in music folder  and change Loading.ogg to your sound .ogg-->
-         <source src="music/Loading.ogg" type="audio/ogg">
-    </audio>
+            <source src="music/Loading.ogg" type="audio/ogg">
+        </audio>
+
     <script>
      var vid = document.getElementById("Loading");
      vid.volume = 0.1
@@ -26,19 +28,23 @@
            
        
           <!-- Text & Rules you cant change that like you want !--> 			
-            <div class="fix">
-               <center> <h3>EN CHARGEMENT...</h3></center>
-    
-                <div class="loadbar"><div class="scroll"></div></div>
-                <center>
-    				 <p class="text">Ne tuez pas les joueurs sans raison (freekill) </p>           
-	          		 <p class="text">Ne pas spam chat/micro </p>
-	           		 <p class="text">Respecter le Staff et les autres joueurs </p>
-	           		 <p class="text">Serveur RP donc pas de "Justin Bieber" ou "Jaquie michel" </p>
-	          		 <p class="text">Ne pas spawnkill !</p>
-	         		 <p class="text">Ne pas troller, parler pour rien dire </p>
-	         		 <p class="text">Ne pas abuser de votre travail </p>
-					</center>
+        <div class="fix">
+            <center> <h3>EN CHARGEMENT...</h3></center>
+
+            <div class="loadbar">
+                <div class="scroll">
+                    
+                </div>
+            </div>
+            <center>
+                <p class="text">Ne tuez pas les joueurs sans raison (freekill) </p>           
+                <p class="text">Ne pas spam chat/micro </p>
+                <p class="text">Respecter le Staff et les autres joueurs </p>
+                <p class="text">Serveur RP donc pas de "Justin Bieber" ou "Jaquie michel" </p>
+                <p class="text">Ne pas spawnkill !</p>
+                <p class="text">Ne pas troller, parler pour rien dire </p>
+                <p class="text">Ne pas abuser de votre travail </p>
+            </center>
         </div>
  
  <!-- Script of fivem keks loading screen. !--> 			
