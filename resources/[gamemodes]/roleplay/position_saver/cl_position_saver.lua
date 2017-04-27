@@ -2,7 +2,8 @@ Citizen.CreateThread(function ()
 	while true do
 	Citizen.Wait(30000)
 		local posPlayer = GetEntityCoords(GetPlayerPed(-1))
-		TriggerServerEvent('savePos', posPlayer.x, posPlayer.y, posPlayer.z)
+		local heading = GetEntityHeading(GetPlayerPed(-1))
+		TriggerServerEvent('savePos', posPlayer.x, posPlayer.y, posPlayer.z, heading)
 	end
 end)
 -- Si utilisé seul :

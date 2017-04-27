@@ -2,10 +2,10 @@ require "resources/essentialmode/lib/MySQL"
 MySQL:open("localhost", "gta5_gamemode_essential", "root", "jujumanu78")
 
 RegisterServerEvent('savePos')
-AddEventHandler('savePos', function(x, y, z)
+AddEventHandler('savePos', function(x, y, z, h)
   TriggerEvent('es:getPlayerFromId', source, function(user)
     local player = user.identifier
-      MySQL:executeQuery("UPDATE users SET x='@x', y='@y', z='@z' WHERE identifier = '@username'", {['@username'] = player, ['@x'] = x, ['@y'] = y, ['@z'] = z})
+      MySQL:executeQuery("UPDATE users SET x='@x', y='@y', z='@z', h='@h' WHERE identifier = '@username'", {['@username'] = player, ['@x'] = x, ['@y'] = y, ['@z'] = z, ['@h'] = h})
   end)
 end)
 

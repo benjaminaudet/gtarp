@@ -434,7 +434,7 @@ AddEventHandler('garages:SpawnVehicle', function(vehicle, plate, state, primaryc
 	local secondarycolor = secondarycolor
 	Citizen.CreateThread(function()			
 		Citizen.Wait(3000)
-		local caisseo = GetClosestVehicle(215.124, -791.377, 30.836, 3.000, 0, 70)
+		local caisseo = GetClosestVehicle(234.0, -794.0, 30.543, 3.000, 0, 70)
 		if DoesEntityExist(caisseo) then
 			drawNotification("La zone est encombrée") 
 		else
@@ -445,7 +445,7 @@ AddEventHandler('garages:SpawnVehicle', function(vehicle, plate, state, primaryc
 				while not HasModelLoaded(car) do
 					Citizen.Wait(0)
 				end
-				veh = CreateVehicle(car, 215.124, -791.377, 30.836, 0.0, true, false)
+				veh = CreateVehicle(car, 234.0, -794.0, 30.543, 156, true, false)
 				SetVehicleNumberPlateText(veh, plate)
 				SetVehicleOnGroundProperly(veh)
 				SetVehicleColours(veh, primarycolor, secondarycolor)
