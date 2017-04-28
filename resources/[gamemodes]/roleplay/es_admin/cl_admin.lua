@@ -31,6 +31,20 @@ AddEventHandler('es_admin:spawnVehicle', function(v)
 	end
 end)
 
+local god = false
+
+RegisterNetEvent('es_admin:god')
+AddEventHandler('es_admin:god', function()
+	local playerPed = GetPlayerPed(-1)
+	if god == false then
+		SetEntityInvincible(playerPed, true)
+		god = true
+	else
+		SetEntityInvincible(playerPed, false)
+		god = false
+	end
+end)
+
 RegisterNetEvent('es_admin:freezePlayer')
 AddEventHandler("es_admin:freezePlayer", function(state)
 	local player = PlayerId()
