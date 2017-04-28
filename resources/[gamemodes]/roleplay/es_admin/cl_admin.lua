@@ -134,7 +134,7 @@ Citizen.CreateThread(function()
 	end
 end)
 
-local heading = GetEntityHeading(LocalPed())
+local heading = GetEntityHeading(GetPlayerPed(-1))
 
 Citizen.CreateThread(function()
 	while true do
