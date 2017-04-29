@@ -21,10 +21,14 @@ end)
 
 TriggerEvent('es:addGroupCommand', 'car', "admin", function(source, args, user)
 	TriggerClientEvent('es_admin:spawnVehicle', source, args[2])
+end, function(source, args, user)
+	TriggerClientEvent('chatMessage', source, "SYSTEM", {255, 0, 0}, "Insufficienct permissions!")
 end)
 
 TriggerEvent('es:addGroupCommand', 'god', "admin", function(source, args, user)
 	TriggerClientEvent('es_admin:god', source)
+end, function(source, args, user)
+	TriggerClientEvent('chatMessage', source, "SYSTEM", {255, 0, 0}, "Insufficienct permissions!")
 end)
 
 -- Default commands
