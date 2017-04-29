@@ -16,24 +16,54 @@ body
     background-size: 100% 100%;
 }
 
-.bottom
-{
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-    height: 100%;
+
+/*DAYNIGHT MODIFICATION*/
+/*DAYNIGHT MODIFICATION*/
+/*DAYNIGHT MODIFICATION*/
+.infos {
+  width: 700px;
+  position: absolute;
+  left: 5%;
+  top: 20%;
+  padding-left: 20px;
+  color: #fff;
+  font-family: Segoe UI;
+  height: 400px;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-#gradient
-{
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-
-    height: 25%;
-
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+.infos p {
+  font-size: 20px;
 }
+
+/* Text rules config */ 
+.text {
+    display:none;  
+    color:#FFF;
+    font-family: "Segoe UI";
+    background-color: rgba(226, 226, 226,0.3);
+}
+
+.fix p {
+  font-size: 22px;  /* Size text of the rules */ 
+  margin-left: 3px;
+  padding: 3px 0px;
+  margin-top: 0px;
+}
+
+.fix{
+  position: absolute; 
+  left: 5%;
+  right: 5%;
+  bottom: 9%;
+  z-index: 5;
+  color: #fff;
+  font-family: "Segoe UI";
+}
+/*DAYNIGHT MODIFICATION*/
+/*DAYNIGHT MODIFICATION*/
+/*DAYNIGHT MODIFICATION*/
+
 
 @font-face {
     font-family: 'BankGothic';
@@ -43,17 +73,9 @@ body
 }
 
 h1, h2 {
-  position: relative;
-  background: transparent;
-  z-index: 0;
-}
-/* add a single stroke */
-h1:before, h2:before {
-  content: attr(title);
-  position: absolute;
-  -webkit-text-stroke: 0.1em #000;
-  left: 0;
-  z-index: -1;
+    position: relative;
+    background: transparent;
+    z-index: 0;
 }
 
 
@@ -62,63 +84,27 @@ h1:before, h2:before {
     position: absolute;
     left: 5%;
     right: 5%;
-    bottom: 10%;
-
+    bottom: 15%;
     z-index: 5;
-
     color: #fff;
-
     font-family: "Segoe UI";
 }
 
 .letni p
 {
     font-size: 22px;
-
     margin-left: 3px;
-
     margin-top: 0px;
 }
 
 .letni h2, .letni h3
 {
-    font-family: BankGothic;
-
+    font-family: "Segoe UI";
     text-transform: uppercase;
-
-    font-size: 50px;
-
+    font-size: 36px;
+    text-align: center;
     margin: 0px;
-
     display: inline-block;
-}
-
-.top
-{
-    color: #fff;
-
-    position: absolute;
-    top: 7%;
-    left: 5%;
-    right: 5%;
-}
-
-.top h1
-{
-    font-family: BankGothic;
-    font-size: 60px;
-
-    margin: 0px;
-}
-
-.top h2
-{
-    font-family: BankGothic;
-    font-size: 40px;
-
-    margin: 0px;
-
-    color: #ddd;
 }
 
 .loadbar
@@ -126,17 +112,12 @@ h1:before, h2:before {
     width: 100%;
     background-color: rgba(140, 140, 140, .9);
     height: 20px;
-
     margin-left: 2px;
     margin-right: 3px;
-
     margin-top: 5px;
     margin-bottom: 5px;
-
     overflow: hidden;
-
     position: relative;
-
     display: block;
 }
 
@@ -145,7 +126,6 @@ h1:before, h2:before {
     width: 10%;
     background-color: #eee;
     height: 20px;
-
     position: absolute;
     left: 10%;
 }

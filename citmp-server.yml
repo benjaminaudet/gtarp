@@ -14,7 +14,7 @@ AutoStartResources:
     - hardcap # prevents too many players from joining
     - scoreboard
     - roleplay
-    - loadingscreen
+    - keks
 
 # do change
 RconPassword: lovely

@@ -1,36 +1,51 @@
 <html>
     <head>
         <link href="keks.css" rel="stylesheet" type="text/css" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
     </head>
     <body>
         <div class="backdrop">
-            <div class="top">
-                <h1 title="Free Mode">Free Mode</h1>
-                <h2 title="Not Algonquin">Not Algonquin</h2>
+            <audio autoplay="" id="Loading" loop="">
+                <source src="music/Loading.ogg" type="audio/ogg">
+            </audio>
+            <div class="infos">
+                 <h2>MELODIA RP - 0.1v - EN DÉVELOPPEMENT</h2>
+                 <br>
+                 <p>- Garage et Concessionaire OK</p>
+                 <p>- Garage et Concessionaire OK</p>
+                 <p>- Garage et Concessionaire OK</p>
+                 <p>- Garage et Concessionaire OK</p>
             </div>
 
             <div class="letni">
-                <h2 title="INTEL">Intel</h2>
-                <h3></h3>
+                <center><h2 title="CHARGEMENT">CHARGEMENT...</h2><h3></h3></center>                
                 <div class="loadbar"><div class="thingy"></div></div>
-                <p>The Statue of Happiness has no heart. You do.</p>
             </div>
-            <div class="bottom">
-                <div id="gradient">
+                <div class="fix">
+                    <center>
+                        <p class="text">Ne jamais tuer un joueur sans raison (freekill)</p>
+                        <p class="text">Le respect est de vigueur</p>
+                        <p class="text">Un nom et prénom RP est obligatoire</p>
+                        <p class="text">Le troll est strictement interdit</p>
+                        <p class="text">Les limites de l'ile dépendent de votre imagination</p>
+                    </center>
                 </div>
-            </div>
         </div>
 
 <script type="text/javascript">
+
+// Music Volume
+var vid = document.getElementById("Loading");
+vid.volume = 0.1;
 // this will actually restart the loading bar a lot, making multiple loading bars is an exercise to the reader... for now.
 // for a set of possible events, see https://github.com/citizenfx/cfx-client/blob/up-master/components/loading-screens-five/src/LoadingScreens.cpp
 var count = 0;
 var thisCount = 0;
 
 const emoji = {
-    INIT_BEFORE_MAP_LOADED: [ '🍉' ],
-    INIT_AFTER_MAP_LOADED: [ '🍋', '🍊' ],
-    INIT_SESSION: [ '🍐', '🍅', '🍆' ],
+    INIT_BEFORE_MAP_LOADED: [ '.' ],
+    INIT_AFTER_MAP_LOADED: [ '..', '...' ],
+    INIT_SESSION: [ '....', '....', '....' ],
 };
 
 const handlers = {
@@ -72,6 +87,24 @@ window.addEventListener('message', function(e)
 {
     (handlers[e.data.eventName] || function() {})(e.data);
 });
+
+
+(function() {
+    //used for text
+    var text = $(".text");
+    var quoteIndex = -1;
+
+    function showNextQuote() {
+        ++quoteIndex;
+        text.eq(quoteIndex % text.length)
+            .fadeIn(2000)//fade in time
+            .delay(2000)//delay time
+            .fadeOut(2000, showNextQuote);//fase out next quote
+    }
+
+    showNextQuote();
+
+})();
 </script>
     </body>
 </html>
