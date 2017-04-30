@@ -50,3 +50,8 @@ server_script 'voip/sv_voip.lua'
 -- Car HUD
 
 client_script 'carhud/carhud.lua'
+
+-- Weapons shops
+
+client_script 'es_weashop/weashop.lua'
+server_script 'es_weashop/sv_weashop.lua'

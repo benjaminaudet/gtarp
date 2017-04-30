@@ -15,6 +15,7 @@ AutoStartResources:
     - scoreboard
     - roleplay
     - keks
+    - frfuel
 
 # do change
 RconPassword: lovely

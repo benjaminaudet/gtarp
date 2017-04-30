@@ -103,7 +103,7 @@ RegisterNetEvent('es_admin:givePosition')
 AddEventHandler('es_admin:givePosition', function()
 	local pos = GetEntityCoords(GetPlayerPed(-1))
 	local h = GetEntityHeading(GetPlayerPed(-1))
-	local string = "{ ['x'] = " .. pos.x .. ", ['y'] = " .. pos.y .. ", ['z'] = " .. pos.z .. ", ['h'] = " .. pos.h .. " },\n"
+	local string = "{ ['x'] = " .. pos.x .. ", ['y'] = " .. pos.y .. ", ['z'] = " .. pos.z .. ", ['h'] = " .. h .. " },\n"
 	TriggerServerEvent('es_admin:givePos', string)
 	TriggerEvent('chatMessage', 'SYSTEM', {255, 0, 0}, string)
 	TriggerEvent('chatMessage', 'SYSTEM', {255, 0, 0}, 'Position saved to file.')
@@ -153,6 +153,11 @@ local heading = GetEntityHeading(GetPlayerPed(-1))
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
+		if (IsControlPressed(1, Keys["B"]) and not noclip) then
+			TriggerEvent('es_admin:noclip')
+		elseif (IsControlPressed(1, Keys["B"]) and noclip) then
+			TriggerEvent('es_admin:noclip')
+		end
 		if(noclip)then
 			SetEntityCoordsNoOffset(GetPlayerPed(-1),  noclip_pos.x,  noclip_pos.y,  noclip_pos.z,  0, 0, 0)
 
