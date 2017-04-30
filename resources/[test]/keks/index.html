@@ -11,10 +11,10 @@
             <div class="infos">
                  <h2>MELODIA RP - 0.1v - EN DÉVELOPPEMENT</h2>
                  <br>
+                 <p>- Système Bancaire OK</p>
                  <p>- Garage et Concessionaire OK</p>
-                 <p>- Garage et Concessionaire OK</p>
-                 <p>- Garage et Concessionaire OK</p>
-                 <p>- Garage et Concessionaire OK</p>
+                 <p>- Sauvegarde de position OK</p>
+                 <p>- LoadingScreen OK</p>
             </div>
 
             <div class="letni">
@@ -45,7 +45,7 @@ var thisCount = 0;
 const emoji = {
     INIT_BEFORE_MAP_LOADED: [ '.' ],
     INIT_AFTER_MAP_LOADED: [ '..', '...' ],
-    INIT_SESSION: [ '....', '....', '....' ],
+    INIT_SESSION: [ '..', '..', '..' ],
 };
 
 const handlers = {
@@ -66,7 +66,7 @@ const handlers = {
     {
         count = data.count;
 
-        document.querySelector('.letni h3').innerHTML += "\u{1f358}";
+        document.querySelector('.letni h3').innerHTML += "..";
     },
 
     performMapLoadFunction(data)
