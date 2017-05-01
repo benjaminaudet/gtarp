@@ -1,3 +1,8 @@
+function ShowInfo(text, state)
+    SetTextComponentFormat("STRING")
+    AddTextComponentString(text)DisplayHelpTextFromStringLabel(0, state, 0, -1)
+end
+
 local weashop = {
 	opened = false,
 	title = "Weapon store",
@@ -219,7 +224,7 @@ function ShowWeashopBlips(bool)
 				for i,b in ipairs(weashop_blips) do
 					if IsPlayerWantedLevelGreater(GetPlayerIndex(),0) == false and weashop.opened == false and IsPedInAnyVehicle(LocalPed(), true) == false and  GetDistanceBetweenCoords(b.pos.entering[1],b.pos.entering[2],b.pos.entering[3],GetEntityCoords(LocalPed())) < 2 then
 						DrawMarker(1,b.pos.entering[1],b.pos.entering[2],b.pos.entering[3] - 1,0,0,0,0,0,0,2.001,2.0001,0.5001,0,155,255,200,0,0,0,0)
-						drawTxt('Appuyez sur ~g~ENTRER~s~ pour acheter ~b~des armes',0,1,0.5,0.8,0.6,255,255,255,255)
+            			ShowInfo("Appuyer sur ~INPUT_CONTEXT~ pour accéder au menu d'achat")
 						currentlocation = b
 						inrange = true
 					end
@@ -373,7 +378,7 @@ local backlock = false
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
-		if IsControlJustPressed(1,201) and IsPlayerInRangeOfweashop() then
+		if IsControlJustPressed(1,38) and IsPlayerInRangeOfweashop() then
 			if weashop.opened then
 				CloseCreator()
 			else
@@ -403,7 +408,7 @@ Citizen.CreateThread(function()
 						DoesPlayerHaveWeapon(button.model,button,y,selected,ped)
 					end
 					y = y + 0.04
-					if selected and IsControlJustPressed(1,201) then
+					if selected and IsControlJustPressed(1,38) then
 						ButtonSelected(button)
 					end
 				end

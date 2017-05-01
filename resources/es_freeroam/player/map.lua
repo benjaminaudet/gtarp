@@ -30,6 +30,8 @@ local blips = {
     {name="Stripbar", id=121, x=134.476, y=-1307.887, z=28.983},
     {name="Smoke on the Water", id=140, x=-1171.42, y=-1572.72, z=3.6636},
     {name="Weed Farm", id=140, x=2208.777, y=5578.235, z=53.735},
+    {name="Weed Treat", id=140, x=-180.0000, y=6400.0000, z=31.735},
+    {name="Weed Dealer", id=140, x=86.0000, y=-1954.0000, z=20.735},
     {name="Downtown Cab Co", id=375, x=900.461, y=-181.466, z=73.89},
     {name="Theater", id=135, x=293.089, y=180.466, z=104.301},
     -- Police Stations

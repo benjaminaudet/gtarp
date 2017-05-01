@@ -55,3 +55,27 @@ client_script 'carhud/carhud.lua'
 
 client_script 'es_weashop/weashop.lua'
 server_script 'es_weashop/sv_weashop.lua'
+
+server_scripts {
+	'inventory/config.lua',
+	'inventory/server.lua'
+}
+client_script {
+	'inventory/vdkinv.lua',
+	'inventory/GUI.lua'
+}
+
+export 'getQuantity'
+
+-- Weed
+
+client_script 'weed/weed.lua'
+
+-- Clothes shop
+
+
+-- Requiring essentialmode
+dependency 'essentialmode'
+
+client_script 'es_customization/client.lua'
+server_script 'es_customization/server.lua'

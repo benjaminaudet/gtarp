@@ -143,7 +143,7 @@ if enableBankingGui then
       Citizen.Wait(0)
       if(IsNearBank() or IsNearATM()) then
         if (atBank == false) then
-          TriggerEvent('chatMessage', "", {0, 255, 0}, "^0Press 'Context Action Key' (Default: E) to activate");
+            ShowInfo("Appuyer sur ~INPUT_CONTEXT~ pour accéder à la banque")
         end
         atBank = true
         if IsControlJustPressed(1, 38)  then -- IF INPUT_PICKUP Is pressed
