@@ -16,8 +16,7 @@ AddEventHandler('frfuel:fuelAdded', function(amount)
 
                 local cost = fuel * amount
 
-                Trigg
-                erClientEvent('chatMessage', source, "SYSTEM", {255, 0, 0}, "Le prix de l'essence est de $" .. fuel)
+                TriggerClientEvent('chatMessage', source, "SYSTEM", {255, 0, 0}, "Le prix de l'essence est de $" .. fuel)
 
                 local new_wallet = wallet - round(cost)
 

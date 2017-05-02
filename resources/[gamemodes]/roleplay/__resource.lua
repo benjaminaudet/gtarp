@@ -71,6 +71,10 @@ export 'getQuantity'
 
 client_script 'weed/weed.lua'
 
+-- Coke
+
+client_script 'coke/coke.lua'
+
 -- Clothes shop
 
 

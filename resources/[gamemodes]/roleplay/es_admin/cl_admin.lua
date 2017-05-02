@@ -180,7 +180,7 @@ Citizen.CreateThread(function()
 			end
 			if(IsControlPressed(1,  Keys["W"]))then
 				if(IsControlPressed(1,  Keys["LEFTSHIFT"]))then
-					noclip_pos = GetOffsetFromEntityInWorldCoords(GetPlayerPed(-1), 0.0, -3.0, 0.0)
+					noclip_pos = GetOffsetFromEntityInWorldCoords(GetPlayerPed(-1), 0.0, -8.0, 0.0)
 				else	
 					noclip_pos = GetOffsetFromEntityInWorldCoords(GetPlayerPed(-1), 0.0, -1.0, 0.0)
 				end
