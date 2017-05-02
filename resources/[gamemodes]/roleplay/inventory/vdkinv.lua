@@ -106,7 +106,6 @@ Citizen.CreateThread(function()
         Menu.renderGUI() -- Draw menu on each tick if Menu.hidden = false
         if IsEntityDead(PlayerPedId()) then
             RegisterNetEvent("item:reset")
-            TriggerServerEvent("item:reset")
         end
     end
 end)

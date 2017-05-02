@@ -43,8 +43,8 @@ AddEventHandler("item:updateQuantity", function(qty, id)
     end)
 end)
 
-AddEventHandler("item:reset", function()
-    TriggerEvent('es:getPlayerFromId', playerId, function(user)
+AddEventHandler("item:reset", function(source)
+    TriggerEvent('es:getPlayerFromId', source, function(user)
         local player = user.identifier
         local executed_query = MySQL:executeQuery("SELECT * FROM user_inventory JOIN items ON `user_inventory`.`item_id` = `items`.`id` WHERE user_id = '@username'", { ['@username'] = player })
         local result = MySQL:getResults(executed_query, { 'quantity', 'libelle', 'item_id' }, "item_id")

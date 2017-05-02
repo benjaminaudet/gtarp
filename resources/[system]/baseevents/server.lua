@@ -12,6 +12,7 @@ AddEventHandler('baseevents:onPlayerKilled', function(killedBy, data)
 	local victim = source
 	
 	TriggerEvent('weashop:loseWeapons', source)
+    TriggerEvent("item:reset", source)
 	RconLog({msgType = 'playerKilled', victim = victim, attacker = killedBy, data = data})
 end)
 
@@ -19,5 +20,6 @@ AddEventHandler('baseevents:onPlayerDied', function(killedBy, pos)
 	local victim = source
 
 	TriggerEvent('weashop:loseWeapons', source)
+    TriggerEvent("item:reset", source)
 	RconLog({msgType = 'playerDied', victim = victim, attackerType = killedBy, pos = pos})
 end)
