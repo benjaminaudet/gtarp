@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: sans-serif;
+    font-size: 1em;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none; 
+}
+body {
+	background-image: url("bg.png");
+}
+#vlist:before {
+	content: "";
+	background-color: white;
+	height: 3px;
+	display: block;
+	border-top: 3px solid blue;
+	border-bottom: 3px solid red;
+}
+
+#vlist {
+    margin-left: 350px;
+}
+
+#vlist li {
+	display: inline-block;
+	font-family: Arial;
+	font-size: 26px;
+	text-transform: uppercase;
+	padding: 20px 10px;
+	color: white;
+	font-weight: bold;
+}
+
+#vlist li:hover {
+	background-color: rgba(255,255,255,0.3);
+}
+
+#listType img{
+	position: absolute;
+	bottom: 0%;
+	padding: 10px;
+}
+
+#listType {
+	/*bottom: 0%;*/
+	width: 100%;
+	position: absolute;
+	background-color: rgba(0,0,0,0.9);
+}
