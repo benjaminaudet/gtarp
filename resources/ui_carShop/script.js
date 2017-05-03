@@ -1146,47 +1146,40 @@ let veshop = {
 
 let lArray = veshop.menu["vehicles"]["buttons"].length;
 let i = 0;
+let typeCar;
+
 while(lArray > i){
-	let li = document.createElement("li");
-	let text = document.createTextNode(veshop.menu["vehicles"]["buttons"][i].name)
-	li.setAttribute("id", i)
-	li.appendChild(text);
-	let element = document.getElementById("vListType");
-	element.appendChild(li);
+	$("#vListType").append("<li class='type' data-id='" + i + "'>" + veshop.menu["vehicles"]["buttons"][i].name + "</li>");
 	i++;
 }
 
 
 
-$("ul#vListType li").click(
-
-	function openCarList(){
-		let lArray = veshop.menu["sedans"]["buttons"].length;
+$("ul#vListType").on("click", "li",
+	function() {
 		let i = 0;
-		let id = $(this).attr("id");
-		let typeCar = veshop.menu["vehicles"]["buttons"][id].name;
-
+		let id = $(this).data("id");
+		// console.log(typeCar);
+		typeCar = veshop.menu["vehicles"]["buttons"][id].name;
 		$("ul#vListCar li").remove();
 		typeCar = typeCar.toLowerCase();
-		console.log(typeCar);
-		while(lArray > i){
-			let li = document.createElement("li");
-			let text = document.createTextNode(veshop.menu[typeCar]["buttons"][i].name)
-			li.setAttribute("id", i)
-			li.appendChild(text);
-			let element = document.getElementById("vListCar");
-			element.appendChild(li);
+		typeCar = typeCar.replace(" ", "");
+		let lArray = veshop.menu[typeCar]["buttons"].length -1;
+
+		while(lArray >= i){
+			$("#vListCar").append("<li class='vehicles' data-id='" + i + "'>" + veshop.menu[typeCar]["buttons"][i].name + "</li>");
 			i++;
 		}
 	}
-	)
+);
 
 
-$("ul#vListCar li").click(
-	function showPrice(){
-		let id = $(this).attr("id");
-		let price = veshop.menu[typeCar]["buttons"][id].costs;
-		console.log("test");
-	})
+$("ul#vListCar").on("click", "li",
+	function() {
+		let id = $(this).data("id");
+		$(".price").text(veshop.menu[typeCar]["buttons"][id].costs + "£");
+		$(".buy").show();
+	}
+)
 
 
