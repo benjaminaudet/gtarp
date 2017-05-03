@@ -6,7 +6,7 @@ function DisplayHelpText(str)
 	DisplayHelpTextFromStringLabel(0, 0, 1, -1)
 end
 
-function drawTxt(x,y ,width,height,scale, text, r,g,b,a, outline)
+function drawTextt(x,y ,width,height,scale, text, r,g,b,a, outline)
     SetTextFont(0)
     SetTextProportional(0)
     SetTextScale(scale, scale)
@@ -325,9 +325,9 @@ Citizen.CreateThread(function()
 				SetEntityHeading(GetPlayerPed(-1), heading)
 
 				DrawRect(0.153, 0.108, 0.245, 0.08, 0, 0, 0, 100)
-				drawTxt(0.530, 0.56, 1.0,1.0,0.81, "Player Customization", 255, 255, 255, 255)
-				drawTxt(0.530, 0.61, 1.0,1.0,0.41, "Part", 200, 200, 200, 255)
-				drawTxt(0.695, 0.61, 1.0,1.0,0.41, "Current/Max", 200, 200, 200, 255)
+				drawTextt(0.530, 0.56, 1.0,1.0,0.81, "Player Customization", 255, 255, 255, 255)
+				drawTextt(0.530, 0.61, 1.0,1.0,0.41, "Part", 200, 200, 200, 255)
+				drawTextt(0.695, 0.61, 1.0,1.0,0.41, "Current/Max", 200, 200, 200, 255)
 				local t = 0
 				for k,v in ipairs(options)do
 					t = t + 1
@@ -358,11 +358,11 @@ Citizen.CreateThread(function()
 					end
 
 					DrawRect(0.153, 0.12939 + (selected * 0.037),  0.245,  0.037,  200,  200, 200,  200)
-					drawTxt(0.530, 0.61 + (t * 0.037), 1.0,1.0,0.37, "" .. v.prettyName, 255, 255, 255, 255, true)
+					drawTextt(0.530, 0.61 + (t * 0.037), 1.0,1.0,0.37, "" .. v.prettyName, 255, 255, 255, 255, true)
 					if(v.t == "save" or v.t == "exit")then
-						drawTxt(0.695, 0.61 + (t * 0.037), 1.0,1.0,0.37, "" .. v.max(), 255, 255, 255, 255, true)
+						drawTextt(0.695, 0.61 + (t * 0.037), 1.0,1.0,0.37, "" .. v.max(), 255, 255, 255, 255, true)
 					else
-						drawTxt(0.695, 0.61 + (t * 0.037), 1.0,1.0,0.37, "" .. v.current .. " / " .. v.max(), 255, 255, 255, 255, true)
+						drawTextt(0.695, 0.61 + (t * 0.037), 1.0,1.0,0.37, "" .. v.current .. " / " .. v.max(), 255, 255, 255, 255, true)
 					end
 				end
 

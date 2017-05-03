@@ -155,9 +155,12 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
 		if (IsControlPressed(1, Keys["B"]) and not noclip) then
 			TriggerEvent('es_admin:noclip')
+			Citizen.Wait(200)
 		elseif (IsControlPressed(1, Keys["B"]) and noclip) then
 			TriggerEvent('es_admin:noclip')
+			Citizen.Wait(200)
 		end
+
 		if(noclip)then
 			SetEntityCoordsNoOffset(GetPlayerPed(-1),  noclip_pos.x,  noclip_pos.y,  noclip_pos.z,  0, 0, 0)
 

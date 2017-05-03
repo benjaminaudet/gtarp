@@ -174,7 +174,7 @@ function firstToUpper(str)
 	return (str:gsub("^%l", string.upper))
 end
 
-function OpenCreator()
+function OpenCreatorGarage()
 	boughtcar = false
 	local ped = LocalPed()
 	local pos = currentlocation.pos.outside
@@ -297,7 +297,7 @@ local backlock = false
 				if garage.opened then
 					CloseCreator()
 				else
-					OpenCreator()
+					OpenCreatorGarage()
 				end
 			end   
 		if garage.opened then

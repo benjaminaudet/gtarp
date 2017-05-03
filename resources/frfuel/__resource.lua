@@ -1,2 +1,2 @@
 client_script "frfuel.net.dll"
-client_script "frfuelmonaie.lua"
+server_script "frfuelmonaie.lua"
