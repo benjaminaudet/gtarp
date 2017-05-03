@@ -263,7 +263,7 @@ function firstToUpper(str)
 end
 
 --local veh = nil
-function OpenCreator()
+function OpenCreatorWeapon()
 	boughtWeapon = false
 	local ped = GetPlayerPed(-1)
 	FreezeEntityPosition(ped,true)
@@ -382,7 +382,7 @@ Citizen.CreateThread(function()
 			if weashop.opened then
 				CloseCreator()
 			else
-				OpenCreator()
+				OpenCreatorWeapon()
 			end
 		end
 		if weashop.opened then
