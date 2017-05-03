@@ -10,8 +10,9 @@
 }
 body {
 	background-image: url("bg.png");
+	cursor: pointer;
 }
-#vlist:before {
+#vListType:before {
 	content: "";
 	background-color: white;
 	height: 3px;
@@ -20,11 +21,11 @@ body {
 	border-bottom: 3px solid red;
 }
 
-#vlist {
+#vListType {
     margin-left: 350px;
 }
 
-#vlist li {
+#vListType li {
 	display: inline-block;
 	font-family: Arial;
 	font-size: 26px;
@@ -34,7 +35,7 @@ body {
 	font-weight: bold;
 }
 
-#vlist li:hover {
+#vListType li:hover {
 	background-color: rgba(255,255,255,0.3);
 }
 
@@ -45,8 +46,35 @@ body {
 }
 
 #listType {
-	/*bottom: 0%;*/
 	width: 100%;
 	position: absolute;
+	background-color: rgba(0,0,0,0.9);
+}
+
+#listCar {
+	position: absolute;
+	background-color: rgba(0,0,0,0.9);
+	top: 8%;
+}
+
+#vListCar li {
+	display: inline-block;
+	font-family: Arial;
+	font-size: 20px;
+	text-transform: uppercase;
+	padding: 10px 10px;
+	color: white;
+	font-weight: bold;
+}
+
+#vListCar li:hover {
+	background-color: rgba(255,255,255,0.3);
+}
+
+#carPrice {
+	bottom: 0%;
+	position: absolute;
+	height: 70px;
+	width: 100%;
 	background-color: rgba(0,0,0,0.9);
 }
