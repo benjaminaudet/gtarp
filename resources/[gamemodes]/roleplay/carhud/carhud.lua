@@ -34,8 +34,8 @@ Citizen.CreateThread(function()
 			drawRct(0.1555, 0.932, 0.046,0.03,0,0,0,100) 	-- UI:panel kmh	
 			
 			
-			drawTextt(0.657, 1.42, 1.0,1.0,0.4 , "~w~" .. math.ceil(kmh), 255, 255, 255, 255)  -- INT: kmh
-			drawTextt(0.678, 1.432, 1.0,1.0,0.4, "~w~ km/h", 255, 255, 255, 255)	-- TXT: kmh
+			drawTextt(0.657, 1.427, 1.0,1.0,0.4 , "~w~" .. math.ceil(kmh), 255, 255, 255, 255)  -- INT: kmh
+			drawTextt(0.675, 1.432, 1.0,1.0,0.3, "~w~ km/h", 255, 255, 255, 255)	-- TXT: kmh
 		end		
 	end
 end)
