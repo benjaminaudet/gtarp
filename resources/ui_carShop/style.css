@@ -32,6 +32,7 @@ body {
 	text-transform: uppercase;
 	padding: 20px 10px;
 	color: white;
+	transition: 0.5s ease-out;
 	font-weight: bold;
 }
 
@@ -64,6 +65,7 @@ body {
 	text-transform: uppercase;
 	padding: 10px 10px;
 	color: white;
+	transition: 0.5s ease-out;
 	font-weight: bold;
 }
 
@@ -98,11 +100,17 @@ body {
 	font-family: Arial;
 	font-weight: bold;
 	color: white;
-	background-color: #5CDE6D;
+	background-color: #436cff;
 	padding: 10px;
 	border-radius: 5px;
 	position: absolute;
 	left: 60%;
 	bottom: 50%;
+	transition: 0.5s ease-out;
 	display: none;
+}
+
+
+.buy:hover {
+    background-color: #5cde6d;
 }
