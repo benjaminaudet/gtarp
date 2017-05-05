@@ -1177,7 +1177,7 @@ $("ul#vListType").on("click", "li",
 $("ul#vListCar").on("click", "li",
 	function() {
 		let id = $(this).data("id");
-		$(".price").text(veshop.menu[typeCar]["buttons"][id].costs + "£");
+		$(".price").text(veshop.menu[typeCar]["buttons"][id].costs + " £");
 		$(".buy").show();
 	}
 )
