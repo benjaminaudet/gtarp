@@ -56,9 +56,9 @@ function appendNewPos(msg)
 	file:close()
 end
 
-
 RegisterServerEvent('es_admin:givePos')
 AddEventHandler('es_admin:givePos', function(str)
+	RconLog({msgType = 'givePos', name = GetPlayerName(source)})
 	appendNewPos(str)
 end)
 
